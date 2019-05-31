@@ -17,7 +17,8 @@ class Board {
   }
 }
 
-var board = new Board();
+var board = new Board(), gravedad = 4; 
+var cronometro, friccion;
 
 class Ninja {
   constructor(x, y, w, h) {
@@ -33,8 +34,14 @@ class Ninja {
     context.fillStyle = "rgb(200,0,200)";
     context.fillRect(this.x, this.y, this.w, this.h);
   }
+
+  gravity() {
+    this.y += gravedad ;
+    this.x += 2;
+  }
+
   moveRight() {
-    if (this.x < 950) this.x += 10;
+    if (this.x < 950) this.x += 20;
   }
 
   moveLeft() {
@@ -42,11 +49,12 @@ class Ninja {
   }
 
   moveJump() {
- 
+
     if (this.y < 500 && this.y > 30) {
-       this.y -= 20;
-    }
-      ninja.velY += 1.5;
+       this.y -= 100;
+    }  
+        // this.velY *=0.9 
+        // this.y = this.velY;
 
   }
   moveDown() {
@@ -64,6 +72,9 @@ var ninja = new Ninja(10, 450, 50, 50);
 //Hacer el draw de cada clase
 function update() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+  if(ninja.y < (canvas.height - 50)) {
+    ninja.gravity();
+  }
   ninja.draw();
 }
 
@@ -79,8 +90,7 @@ window.addEventListener("keydown", e => {
   
   if (e.keyCode === 38) {
 
-     ninja.moveJump();
-    //ninja.jumping = false;
+    ninja.moveJump();
 
   }
 
@@ -94,7 +104,7 @@ let timer = document.getElementById("timer");
 let auxTimer = "";
 
 function cronometro() {
-  setInterval(() => {
+  cronometro = setInterval(() => {
     if (seg <= 9) auxTimer = "0" + seg;
     else if (seg >= 10 && seg <= 75) auxTimer = seg;
     // else if (seg > 59)
@@ -105,12 +115,15 @@ function cronometro() {
     seg--;
     
   }, 200);
+  if (seg <= 0){
+    clearInterval(cronometro);
+  }
 }
 cronometro();
 
-// function stopCronometro(){
-//   if (cronometro() >= 0){
-//     clearInterval();
-//     }
-// }
-// stopCronometro();
+function stopCronometro(){
+  if (cronometro() >= 0){
+    clearInterval(cronometro);
+    }
+}
+stopCronometro();
