@@ -71,10 +71,11 @@ var ninja = new Ninja(10, 450, 50, 50);
 
 //Hacer el draw de cada clase
 function update() {
+  
   context.clearRect(0, 0, canvas.width, canvas.height);
-  if(ninja.y < (canvas.height - 50)) {
-    ninja.gravity();
-  }
+
+  if(ninja.y < (canvas.height - 50)) ninja.gravity();
+  
   ninja.draw();
 }
 
@@ -83,20 +84,15 @@ setInterval(() => {
 }, 1000 / 60);
 
 window.addEventListener("keydown", e => {
+
   if (e.keyCode === 39) ninja.moveRight();
   
   if (e.keyCode === 37) ninja.moveLeft();
-
   
-  if (e.keyCode === 38) {
+  if (e.keyCode === 38) ninja.moveJump();
 
-    ninja.moveJump();
-
-  }
-
-  if (e.keyCode === 40) {
-    ninja.moveDown();
-  }
+  if (e.keyCode === 40) ninja.moveDown();
+  
 });
 
 var seg = 75;
@@ -105,25 +101,16 @@ let auxTimer = "";
 
 function cronometro() {
   cronometro = setInterval(() => {
+
     if (seg <= 9) auxTimer = "0" + seg;
     else if (seg >= 10 && seg <= 75) auxTimer = seg;
-    // else if (seg > 59)
-      // if (seg % 60 == 0) {
-      //   console.log("1:00");
-      // }
     timer.innerHTML = auxTimer;
     seg--;
+
+    if (auxTimer == 0) clearInterval(cronometro)
     
   }, 200);
-  if (seg <= 0){
-    clearInterval(cronometro);
-  }
 }
 cronometro();
 
-function stopCronometro(){
-  if (cronometro() >= 0){
-    clearInterval(cronometro);
-    }
-}
-stopCronometro();
+
