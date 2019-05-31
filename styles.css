@@ -45,3 +45,7 @@ height: 80px;
 width:50px;
 }
 
+#timer{
+  text-align: end;
+  padding-right: 10px;
+}
