@@ -1,9 +1,12 @@
 //Variables
 var canvas = document.getElementById("canvas"),
-  context = canvas.getContext("2d");
+    context = canvas.getContext("2d"),
+    cronometro
+    gravedad = 4;
 
 canvas.width = window.innerWidth;
 canvas.height = 500;
+
 //Clases
 class Board {
   constructor() {
@@ -16,9 +19,6 @@ class Board {
     canvas.fillRect(0, 0, canvas.width, canvas.height);
   }
 }
-
-var board = new Board(), gravedad = 4; 
-var cronometro, friccion;
 
 class Ninja {
   constructor(x, y, w, h) {
@@ -37,7 +37,7 @@ class Ninja {
 
   gravity() {
     this.y += gravedad ;
-    this.x += 2;
+    this.x += 3;
   }
 
   moveRight() {
@@ -49,34 +49,40 @@ class Ninja {
   }
 
   moveJump() {
-
-    if (this.y < 500 && this.y > 30) {
-       this.y -= 100;
-    }  
-        // this.velY *=0.9 
-        // this.y = this.velY;
-
+    if (this.y < 500 && this.y > 30) this.y -= 100;
   }
+
   moveDown() {
-    console.log(this.y, this.h)
     if (this.y > 0 && this.y + this.h <= 500) this.y += 30;
   }
 }
 
+class Ataque1 {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+  }
+  draw(){
+    context.fillStyle = "rgb(30,144,255)";
+    context.fillRect (this.x,this.y,this.w,this.h);
+  }
+}
+
+var board = new Board();
 var ninja = new Ninja(10, 450, 50, 50);
+var ataque1 = new Ataque1(500,450,50,50);
 
-//let { x,y,w,h } = ninja;
 
-//console.log( x,y,w,h)
-
-//Hacer el draw de cada clase
 function update() {
-  
+  // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
-
+  //da gravedad al ninja y cae adelante en cada brinco
   if(ninja.y < (canvas.height - 50)) ninja.gravity();
-  
+  //crea ninja
   ninja.draw();
+  ataque1.draw();
 }
 
 setInterval(() => {
@@ -99,8 +105,9 @@ var seg = 75;
 let timer = document.getElementById("timer");
 let auxTimer = "";
 
-function cronometro() {
-  cronometro = setInterval(() => {
+function countdown() {
+
+    cronometro = setInterval(() => {
 
     if (seg <= 9) auxTimer = "0" + seg;
     else if (seg >= 10 && seg <= 75) auxTimer = seg;
@@ -111,6 +118,6 @@ function cronometro() {
     
   }, 200);
 }
-cronometro();
+countdown();
 
 
