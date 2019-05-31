@@ -7,8 +7,7 @@ margin: 0 auto;
 }
 
 #canvas{
-border: 2px solid yellow;
-background: lightcyan;
+
 }
 
 .second{
@@ -45,7 +44,8 @@ height: 80px;
 width:50px;
 }
 
-#timer{
+#timerc1, #timerc2{
   text-align: end;
-  padding-right: 10px;
+  margin-right: 20px;
 }
+

@@ -45,7 +45,7 @@ class Ninja {
   }
 
   moveLeft() {
-    if (this.x > 0) this.x -= 10;
+    if (this.x > 0) this.x -= 20;
   }
 
   moveJump() {
@@ -72,7 +72,7 @@ class Ataque1 {
 
 var board = new Board();
 var ninja = new Ninja(10, 450, 50, 50);
-var ataque1 = new Ataque1(500,450,50,50);
+var ataque1 = new Ataque1(400,450,50,50);
 
 
 function update() {
@@ -82,7 +82,7 @@ function update() {
   if(ninja.y < (canvas.height - 50)) ninja.gravity();
   //crea ninja
   ninja.draw();
-  ataque1.draw();
+  //ataque1.draw();   empezar ataque when click
 }
 
 setInterval(() => {
@@ -101,23 +101,45 @@ window.addEventListener("keydown", e => {
   
 });
 
-var seg = 75;
-let timer = document.getElementById("timer");
+let bottonAttack1 = document.getElementById("buttonAttack1");
+document.onclick = buttonAttackFunction1;
+function buttonAttackFunction1 (element){
+  console.log("ataque1");
+  ataque1.draw();
+}
+
+
+var seg1 = 75, seg2 = 75;
+let timer1 = document.getElementById("timer1"), timer2 = document.getElementById("timer2");
 let auxTimer = "";
 
-function countdown() {
+function countdown1() {
 
-    cronometro = setInterval(() => {
+    cronometro1 = setInterval(() => {
 
-    if (seg <= 9) auxTimer = "0" + seg;
-    else if (seg >= 10 && seg <= 75) auxTimer = seg;
-    timer.innerHTML = auxTimer;
-    seg--;
+    if (seg1 <= 9) auxTimer = "0" + seg1;
+    else if (seg1 >= 10 && seg1 <= 75) auxTimer = seg1;
+    timer1.innerHTML = auxTimer;
+    seg1--;
 
-    if (auxTimer == 0) clearInterval(cronometro)
+    if (auxTimer == 0) clearInterval(cronometro1);
     
   }, 200);
 }
-countdown();
+countdown1();
 
+function countdown2() {
+
+  cronometro2 = setInterval(() => {
+
+  if (seg2 <= 9) auxTimer = "0" + seg2;
+  else if (seg2 >= 10 && seg2 <= 75) auxTimer = seg2;
+  timer2.innerHTML = auxTimer;
+  seg2--;
+
+  if (auxTimer == 0) clearInterval(cronometro2);
+  
+}, 200);
+}
+countdown2();
 
