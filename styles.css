@@ -39,7 +39,7 @@ margin-top: 1%;
   width: 60px;
   height: 80px;
 }
-.button1,.button2, .button3, .button4{
+#button1,#button2, #button3, #button4{
 height: 80px;
 width:50px;
 }
@@ -47,5 +47,8 @@ width:50px;
 #timerc1, #timerc2{
   text-align: end;
   margin-right: 20px;
+}
+#buttonAttack1,#buttonAttack2,#buttonAttack3,#buttonAttack4{
+  font-size: 50px;
 }
 
