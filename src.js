@@ -130,7 +130,7 @@ function menosUno(){
   if ( conteo1 > 0) conteo1--;
     countAttack1.innerHTML = conteo1;
 }
-window.addEventListener("click", e =>{
+buttonAttack1.addEventListener("click", e =>{
    attack1.moveAttack();
    menosUno();
 });
@@ -144,20 +144,42 @@ function menosUno2(){
   if ( conteo2 > 0) conteo2--;
      countAttack2.innerHTML = conteo2;
 }
-window.addEventListener("click", e =>{
+buttonAttack2.addEventListener("click", e =>{
    attack2.moveDown();
    menosUno2();
 });
 //boton3
+let countAttack3 = document.getElementById("buttonAttack3"),
+    buttonAttack3 = document.getElementById("button3"),
+    conteo3 = 3;
 
+function menosUno3(){
+  if ( conteo3 > 0) conteo3--;
+     countAttack3.innerHTML = conteo3;
+}
+buttonAttack3.addEventListener("click", e =>{
+   
+   menosUno3();
+});
 //boton4
+let countAttack4 = document.getElementById("buttonAttack4"),
+    buttonAttack4 = document.getElementById("button4"),
+    conteo4 = 10;
+
+function menosUno4(){
+  if ( conteo4 > 0) conteo4--;
+     countAttack4.innerHTML = conteo4;
+}
+buttonAttack4.addEventListener("click", e =>{
+   
+   menosUno4();
+});
 
 //countdowns
-var seg1 = 75,
-  seg2 = 75;
-let timer1 = document.getElementById("timer1"),
-  timer2 = document.getElementById("timer2");
-let auxTimer = "";
+let seg1 = 75,seg2 = 75,
+    timer1 = document.getElementById("timer1"),
+    timer2 = document.getElementById("timer2"),
+    auxTimer = "";
 
 function countdown1() {
   cronometro1 = setInterval(() => {

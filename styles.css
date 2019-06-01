@@ -7,7 +7,7 @@ margin: 0 auto;
 }
 
 #canvas{
-
+background: lightblue;
 }
 
 .second{
@@ -44,11 +44,10 @@ height: 80px;
 width:50px;
 }
 
-#timerc1, #timerc2{
-  text-align: end;
-  margin-right: 20px;
-}
 #buttonAttack1,#buttonAttack2,#buttonAttack3,#buttonAttack4{
   font-size: 50px;
+}
+#containerPlayer1{
+  position: absolute;
 }
 
