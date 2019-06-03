@@ -1,27 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
 body{
 margin: 0 auto;
+font-family: 'Indie FLower', cursive;
 }
 
 #container{
-
+width: 100%;
 }
 
 #canvas{
-
+background: url("./assets/img/fondo1.png")no-repeat;
+background-size: cover;
+height: 500px;
 }
 
 .second{
   margin: 0;
   border: 2px solid black;
   background: lightgreen;
-  width: 100%;
+  
   height: 200px;
 }
 
 #containerSecond{
   height: 200px;
-  width: 100%;
   text-align: center;
+  margin:0 auto;
 }
 
 .ataque1, .ataque2, 
@@ -47,7 +52,38 @@ width:50px;
 #buttonAttack1,#buttonAttack2,#buttonAttack3,#buttonAttack4{
   font-size: 50px;
 }
+
 #containerPlayer1{
   position: absolute;
+  color: orange;
+  font-size: 40px;
 }
 
+#player1{
+  list-style-type: none;
+  float: left;
+}
+
+div ul li{
+  display: inline;
+}
+
+#containerPlayer2{
+  color:blue;
+  font-size: 30px;
+}
+.vidas{
+  height: 40px;
+  width: 40px;
+}
+.ninjaJugador1{
+  height: 100px;
+  width: 70px;
+}
+#timer1{
+  color: red;
+}
+.moneda1{
+  height: 40px;
+  width: 40px;
+}

@@ -5,7 +5,7 @@ var canvas = document.getElementById("canvas"),
   gravedad = 4,
   frames = 0,
   currentFrame = 0,
-  arrayattack1 =[];
+  arrayattack1 = [];
   
 
 canvas.width = window.innerWidth;
@@ -18,9 +18,15 @@ class Board {
     this.y = 0;
     this.w = canvas.width;
     this.h = canvas.height;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/fondo1.png"
+    //this.img.onload = this.draw();
   }
   draw() {
-    canvas.fillRect(0, 0, canvas.width, canvas.height);
+    //canvas.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(this.x,this.y,this.w,this.h);
+
   }
 }
 
@@ -47,8 +53,8 @@ class Ninja {
   }
 
   gravity() {
-    this.y += gravedad;
-    this.x += 3;
+    //this.y += gravedad;
+    //this.x += 3;
   }
 
   moveRight() {
@@ -79,24 +85,19 @@ class Attack1 {
     this.img.src = "./assets/img/ROCKET0000.png"
     this.img.onload = this.draw();
   }
+
   draw() {
     // context.fillStyle = "rgb(30,144,255)";
     // context.fillRect(this.x, this.y, this.w, this.h);
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
+
   moveAttack() {
     if (this.x < 950) this.x -= 400;
   }
 }
 
-function generateAttack1(){
-  arrayattack1.push(new Attack1(10,10,50,90));
-}
-function drawAttack1(){
-  arrayattack1.forEach(function(attack,i){
-    attack.attack1.draw();
-  })
-}
+
 
 class Attack2 {
   constructor(x, y, w, h) {
@@ -124,10 +125,10 @@ class Attack3 {
 }
 
 var board = new Board(),
-    ninja = new Ninja(10, 450, 600/10, 200, 0, 0, 5000/10, 600),
+    ninja = new Ninja(10, 340, 100, 600/10, 0, 0, 600, 5000/10),
     //cohete
-    attack1 = new Attack1(400, 450, 90, 50),
-    attack2 = new Attack2(800, 50, 50, 50);
+    attack1 = new Attack1(400, 450, 90, 50);
+    //attack2 = new Attack2(800, 50, 50, 50);
  
 
 function update() {
@@ -140,11 +141,11 @@ function update() {
   //ataque1
   attack1.draw();
   //ataque2
-  attack2.draw();
-  if (frames % 7 == 0){
-    currentFrame == ++ currentFrame % 3;
-  }
-  frames++;
+  // attack2.draw();
+  // if (frames % 7 == 0){
+  //   currentFrame == ++ currentFrame % 3;
+  // }
+  // frames++;
 }
 
 function start(){
@@ -248,5 +249,9 @@ function countdown2() {
   }, 200);
 }
 countdown2();
+
+function gameOver(){
+  clearInterval(inicio);
+}
 
 start();
