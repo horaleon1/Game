@@ -5,7 +5,9 @@ var canvas = document.getElementById("canvas"),
   gravedad = 4,
   frames = 0,
   currentFrame = 0,
-  arrayattack1 = [];
+  arrayattack1 = [],
+  cloud_x,
+  cloud;
   
 
 canvas.width = window.innerWidth;
@@ -30,12 +32,28 @@ class Board {
   }
 }
 
+class Cloud{
+  constructor(x,y,w,h){
+   this.x = x;
+   this.y = y;
+   this.w = w;
+   this.h = h;
+
+   this.img = new Image();
+   this.src = './assets/img/cloud.png'
+   this.onload = this.draw();
+  }
+  draw(){
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+  }
+}
+
 class Ninja {
   constructor(x, y, w, h,mx,my,mw,mh) {
     this.mx = mx;
     this.my = my;
     this.mw = mw;
-    this.mh = mh
+    this.mh = mh;
     
     this.x = x;
     this.y = y;
@@ -53,7 +71,7 @@ class Ninja {
   }
 
   gravity() {
-    //this.y += gravedad;
+    this.y += gravedad;
     //this.x += 3;
   }
 
@@ -97,6 +115,17 @@ class Attack1 {
   }
 }
 
+function generateAttack1(){
+   arrayattack1.push(new Attack1(400,450,90,50));
+}
+function drawAttack1(){
+
+  console.log(arrayattack1);
+   arrayattack1.forEach(function(array,i){
+       array.draw();
+   });
+}
+
 
 
 class Attack2 {
@@ -125,11 +154,11 @@ class Attack3 {
 }
 
 var board = new Board(),
-    ninja = new Ninja(10, 340, 100, 600/10, 0, 0, 600, 5000/10),
+    ninja = new Ninja(10, 240, 100, 600/10, 0, 0, 600, 5000/10),
     //cohete
-    attack1 = new Attack1(400, 450, 90, 50);
+    //attack1 = new Attack1(400, 450, 90, 50),
+    cloud1 = new Cloud(50,50,200,100);
     //attack2 = new Attack2(800, 50, 50, 50);
- 
 
 function update() {
   // crea
@@ -139,13 +168,14 @@ function update() {
   //crea ninja
   ninja.draw();
   //ataque1
-  attack1.draw();
+  //attack1.draw();
   //ataque2
   // attack2.draw();
   // if (frames % 7 == 0){
   //   currentFrame == ++ currentFrame % 3;
   // }
   // frames++;
+ cloud1.draw();
 }
 
 function start(){
@@ -177,7 +207,8 @@ function menosUno() {
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
-  attack1.moveAttack();
+  //attack1.moveAttack();
+  drawAttack1();
   menosUno();
 });
 
