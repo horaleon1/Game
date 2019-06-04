@@ -6,11 +6,11 @@ font-family: 'Indie FLower', cursive;
 }
 
 #container{
-width: 100%;
+width: 100
 }
 
 #canvas{
-background: url("./assets/img/fondo1.png")no-repeat;
+/*background: url("./assets/img/fondo1.png")no-repeat;*/
 background-size: cover;
 height: 500px;
 }
@@ -62,12 +62,16 @@ width:50px;
 #player1{
   list-style-type: none;
   float: left;
+  margin-right: 10%;
 }
 
 div ul li{
   display: inline;
 }
 
+li{
+  border-right: 10%;
+}
 #containerPlayer2{
   color:blue;
   font-size: 30px;

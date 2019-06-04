@@ -23,12 +23,14 @@ class Board {
 
     this.img = new Image();
     this.img.src = "./assets/img/fondo1.png"
-    //this.img.onload = this.draw();
+    this.img.onload = this.draw();
   }
   draw() {
     //canvas.fillRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(this.x,this.y,this.w,this.h);
-
+    context.drawImage(this.img,this.x--,this.y,this.w,this.h);
+    if(this.x <= -1200){
+      this.x=0;
+    }
   }
 }
 
@@ -118,6 +120,7 @@ class Attack1 {
 function generateAttack1(){
    arrayattack1.push(new Attack1(400,450,90,50));
 }
+
 function drawAttack1(){
 
   console.log(arrayattack1);
@@ -163,6 +166,7 @@ var board = new Board(),
 function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
+  //board.draw();
   //da gravedad al ninja y cae adelante en cada brinco
   if (ninja.y < canvas.height - 50) ninja.gravity();
   //crea ninja
@@ -175,6 +179,7 @@ function update() {
   //   currentFrame == ++ currentFrame % 3;
   // }
   // frames++;
+  
  cloud1.draw();
 }
 
