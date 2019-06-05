@@ -16,7 +16,7 @@ class Board {
   constructor() {
     this.x = 0;
     this.y = 0;
-    this.w = 9200;
+    this.w = 9190;
     this.h = canvas.height;
 
     this.img = new Image();
@@ -26,7 +26,7 @@ class Board {
   draw() {
     //canvas.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(this.img,this.x--,this.y,this.w,this.h);
-    if(this.x <= -8490){
+    if(this.x <= -7750){
       this.x=0;
     }
   }
@@ -79,7 +79,7 @@ class Ninja {
   }
 
   moveRight() {
-    if (this.x < window.innerWidth) this.x += 20;
+    if (this.x < window.innerWidth && this.x < 1350) this.x += 20;
         
   }
 
@@ -171,7 +171,7 @@ class Attack3 {
 }
 
 var board = new Board(),
-    ninja = new Ninja(10, 350, 120, 600/10, 0, 0, 600, 5000/10),
+    ninja = new Ninja(200, 350, 120, 600/10, 0, 0, 600, 5000/10),
     //cohete
     //attack1 = new Attack1(400, 450, 90, 50),
     cloud1 = new Cloud(20,20,300,200);
