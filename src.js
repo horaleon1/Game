@@ -18,23 +18,23 @@ class Board {
   constructor() {
     this.x = 0;
     this.y = 0;
-    this.w = canvas.width;
+    this.w = 8640;
     this.h = canvas.height;
 
     this.img = new Image();
-    this.img.src = "./assets/img/fondo1.png"
+    this.img.src = "./assets/img/fondoCompleto2.png"
     this.img.onload = this.draw();
   }
   draw() {
     //canvas.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(this.img,this.x--,this.y,this.w,this.h);
-    if(this.x <= -1200){
+    if(this.x <= -8490){
       this.x=0;
     }
   }
 }
 
-class Cloud{
+class Cloud {
   constructor(x,y,w,h){
    this.x = x;
    this.y = y;
@@ -42,11 +42,14 @@ class Cloud{
    this.h = h;
 
    this.img = new Image();
-   this.src = './assets/img/cloud.png'
+   this.img.src = "./assets/img/cloud.png";
    this.onload = this.draw();
   }
   draw(){
-    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+    context.drawImage(this.img,this.x--,this.y,this.w,this.h);
+    if(this.x > 0){
+      this.x += 2;
+    }
   }
 }
 
@@ -74,11 +77,11 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
-    //this.x += 3;
+    this.x += 3;
   }
 
   moveRight() {
-    if (this.x < 950) this.x += 20;
+    if (this.x < window.innerWidth) this.x += 20;
   }
 
   moveLeft() {
@@ -109,21 +112,21 @@ class Attack1 {
   draw() {
     // context.fillStyle = "rgb(30,144,255)";
     // context.fillRect(this.x, this.y, this.w, this.h);
+    this.x -= 2;
+    console.log(this.x)
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
 
-  moveAttack() {
-    if (this.x < 950) this.x -= 400;
-  }
+  // crashwith(ninja) {
+    
+  // }
 }
 
 function generateAttack1(){
-   arrayattack1.push(new Attack1(400,450,90,50));
+   arrayattack1.push(new Attack1(1200,350,90,50));
 }
 
 function drawAttack1(){
-
-  console.log(arrayattack1);
    arrayattack1.forEach(function(array,i){
        array.draw();
    });
@@ -157,20 +160,22 @@ class Attack3 {
 }
 
 var board = new Board(),
-    ninja = new Ninja(10, 240, 100, 600/10, 0, 0, 600, 5000/10),
+    ninja = new Ninja(10, 350, 120, 600/10, 0, 0, 600, 5000/10),
     //cohete
     //attack1 = new Attack1(400, 450, 90, 50),
-    cloud1 = new Cloud(50,50,200,100);
+    cloud1 = new Cloud(20,20,300,200);
     //attack2 = new Attack2(800, 50, 50, 50);
 
 function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
-  //board.draw();
+  board.draw();
   //da gravedad al ninja y cae adelante en cada brinco
-  if (ninja.y < canvas.height - 50) ninja.gravity();
+  if (ninja.y < canvas.height - 150) ninja.gravity();
   //crea ninja
   ninja.draw();
+  // Dibuja el attaque 1;
+  drawAttack1()
   //ataque1
   //attack1.draw();
   //ataque2
@@ -178,9 +183,9 @@ function update() {
   // if (frames % 7 == 0){
   //   currentFrame == ++ currentFrame % 3;
   // }
-  // frames++;
-  
- cloud1.draw();
+  // frames++;  
+  cloud1.draw();
+
 }
 
 function start(){
@@ -212,8 +217,7 @@ function menosUno() {
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
-  //attack1.moveAttack();
-  drawAttack1();
+  generateAttack1();
   menosUno();
 });
 
@@ -289,5 +293,6 @@ countdown2();
 function gameOver(){
   clearInterval(inicio);
 }
+
 
 start();

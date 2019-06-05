@@ -91,3 +91,20 @@ li{
   height: 40px;
   width: 40px;
 }
+
+/*
+
+  ANIMACION COMO SI FUERA SPRITE
+
+#coinAnimation{
+  height:40px;
+  width: 40px;
+  position: absolute;
+  background: url(./assets/img/coin4.png);
+  animation: coin 1s steps(4) infinite;
+}
+@keyframes coin {
+  from {background-position: 0px;}
+  to { background-position: 40px;}
+}
+*/
