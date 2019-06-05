@@ -68,6 +68,8 @@ class Ninja {
     this.img = new Image();
     this.img.src = "./assets/img/Ninja-Run.png";
     this.img.onload = this.draw();
+
+    this.life = 3;
   }
   draw() {
     context.drawImage(this.img,this.mx,this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
@@ -94,9 +96,10 @@ class Ninja {
   moveDown() {
     if (this.y > 0 && this.y + this.h <= 500) this.y += 30;
   }
+
   crashwith(ninja) {
     return (this.x + this.w > ninja.x) &&
-           (this.x < Ninja.x + ninja.w) &&
+           (this.x < ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
 
@@ -119,13 +122,12 @@ class Attack1 {
     // context.fillStyle = "rgb(30,144,255)";
     // context.fillRect(this.x, this.y, this.w, this.h);
     this.x -= 2;
-    console.log(this.x)
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
  // 13 horas jun 05
    crashwith(ninja) {
     return (this.x + this.w > ninja.x) &&
-           (this.x < Ninja.x + ninja.w) &&
+           (this.x < ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
 
@@ -141,6 +143,22 @@ function drawAttack1(){
        array.draw();
    });
 }
+
+var vidasId = document.getElementById('vidas');
+ 
+function checkCollision(){
+  arrayattack1.forEach((array,i) => {
+    if (ninja.crashwith(array)){
+      arrayattack1.splice(i,1);
+      ninja.life--;
+    }
+    if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
+  })
+}
+
+
+
+//vidasId = ninja.life;
 
 
 
@@ -170,13 +188,18 @@ class Attack3 {
   }
 }
 
+//OBJETOS
+
 var board = new Board(),
     ninja = new Ninja(200, 350, 120, 600/10, 0, 0, 600, 5000/10),
     //cohete
     //attack1 = new Attack1(400, 450, 90, 50),
     cloud1 = new Cloud(20,20,300,200);
     //attack2 = new Attack2(800, 50, 50, 50);
+//////////////////////////////////////////////
 
+
+////////MOTOR///////////////
 function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -196,6 +219,7 @@ function update() {
   // }
   // frames++;  
   cloud1.draw();
+  checkCollision();
 
 }
 
@@ -275,10 +299,10 @@ buttonAttack4.addEventListener("click", e => {
 
 //countdowns
 let seg1 = 75,
-  seg2 = 75,
-  timer1 = document.getElementById("timer1"),
-  timer2 = document.getElementById("timer2"),
-  auxTimer = "";
+    seg2 = 75,
+   timer1 = document.getElementById("timer1"),
+   timer2 = document.getElementById("timer2"),
+   auxTimer = "";
 
 function countdown1() {
   cronometro1 = setInterval(() => {
