@@ -57,12 +57,16 @@ width:50px;
   position: absolute;
   color: orange;
   font-size: 40px;
+  width: 100%;
 }
 
 #player1{
   list-style-type: none;
   float: left;
-  margin-right: 10%;
+  
+}
+#player1 li {
+  margin-right: 70px;
 }
 
 div ul li{
@@ -86,6 +90,7 @@ li{
 }
 #timer1{
   color: red;
+  font-size: 50px;
 }
 .moneda1{
   height: 40px;

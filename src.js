@@ -18,7 +18,7 @@ class Board {
   constructor() {
     this.x = 0;
     this.y = 0;
-    this.w = 8640;
+    this.w = 8840;
     this.h = canvas.height;
 
     this.img = new Image();
@@ -77,7 +77,7 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
-    this.x += 3;
+    this.x += 1;
   }
 
   moveRight() {
@@ -171,7 +171,7 @@ function update() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   board.draw();
   //da gravedad al ninja y cae adelante en cada brinco
-  if (ninja.y < canvas.height - 150) ninja.gravity();
+  if (ninja.y < canvas.height - 160) ninja.gravity();
   //crea ninja
   ninja.draw();
   // Dibuja el attaque 1;
@@ -206,18 +206,21 @@ window.addEventListener("keydown", e => {
   if (e.keyCode === 40) ninja.moveDown();
 });
 
-//botones de ataques
+//BOTONES DE ATAQUES
 //boton1
 let countAttack1 = document.getElementById("buttonAttack1"),
-  buttonAttack1 = document.getElementById("button1"),
-  conteo1 = 5;
+    buttonAttack1 = document.getElementById("button1"),
+    conteo1 = 5, conte1B = 5;
 
 function menosUno() {
   if (conteo1 > 0) conteo1--;
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
+  if(conte1B > 0) { 
   generateAttack1();
+  conte1B--;
+  }
   menosUno();
 });
 
@@ -274,7 +277,7 @@ function countdown1() {
     seg1--;
 
     if (auxTimer == 0) clearInterval(cronometro1);
-  }, 200);
+  }, 1000);
 }
 countdown1();
 
@@ -286,13 +289,12 @@ function countdown2() {
     seg2--;
 
     if (auxTimer == 0) clearInterval(cronometro2);
-  }, 200);
+  }, 1000);
 }
 countdown2();
 
 function gameOver(){
   clearInterval(inicio);
 }
-
 
 start();
