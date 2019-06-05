@@ -5,9 +5,7 @@ var canvas = document.getElementById("canvas"),
   gravedad = 4,
   frames = 0,
   currentFrame = 0,
-  arrayattack1 = [],
-  cloud_x,
-  cloud;
+  arrayattack1 = [];
   
 
 canvas.width = window.innerWidth;
@@ -18,7 +16,7 @@ class Board {
   constructor() {
     this.x = 0;
     this.y = 0;
-    this.w = 8840;
+    this.w = 9200;
     this.h = canvas.height;
 
     this.img = new Image();
@@ -82,6 +80,7 @@ class Ninja {
 
   moveRight() {
     if (this.x < window.innerWidth) this.x += 20;
+        
   }
 
   moveLeft() {
@@ -95,6 +94,13 @@ class Ninja {
   moveDown() {
     if (this.y > 0 && this.y + this.h <= 500) this.y += 30;
   }
+  crashwith(ninja) {
+    return (this.x + this.w > ninja.x) &&
+           (this.x < Ninja.x + ninja.w) &&
+           (this.y + this.w > ninja.y) &&
+           (this.y < ninja.y + ninja.w)
+
+   }
 }
 
 class Attack1 {
@@ -116,10 +122,14 @@ class Attack1 {
     console.log(this.x)
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
+ // 13 horas jun 05
+   crashwith(ninja) {
+    return (this.x + this.w > ninja.x) &&
+           (this.x < Ninja.x + ninja.w) &&
+           (this.y + this.w > ninja.y) &&
+           (this.y < ninja.y + ninja.w)
 
-  // crashwith(ninja) {
-    
-  // }
+   }
 }
 
 function generateAttack1(){
@@ -131,6 +141,7 @@ function drawAttack1(){
        array.draw();
    });
 }
+
 
 
 
@@ -292,6 +303,8 @@ function countdown2() {
   }, 1000);
 }
 countdown2();
+
+//var finished = "Game Over"
 
 function gameOver(){
   clearInterval(inicio);

@@ -27,8 +27,8 @@ body{
   width: 1200px;
   position: absolute;
   background: url(/Users/Horace/Documents/Juego/assets/img/Ninja-Run.png);
-  animation: ninja 5s steps(10) 2;
-  left: 300px;
+  animation: ninja 5s steps(10) 0.25;
+  left: 100px;
 }
 @keyframes ninja{
  from {background-position: 0px;}
