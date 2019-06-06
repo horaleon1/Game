@@ -5,7 +5,8 @@ var canvas = document.getElementById("canvas"),
   gravedad = 4,
   frames = 0,
   currentFrame = 0,
-  arrayattack1 = [], arrayattack2 = [];
+  arrayattack1 = [], arrayattack2 = [],
+  arrayCoins =[];
   
 canvas.width = window.innerWidth;
 canvas.height = 500;
@@ -69,6 +70,7 @@ class Ninja {
     this.img.onload = this.draw();
 
     this.life = 3;
+    this.coins = 0;
   }
   draw() {
     context.drawImage(this.img,this.mx,this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
@@ -104,6 +106,8 @@ class Ninja {
 
    }
 }
+
+
 
 ///ATAQUE 1
 
@@ -204,7 +208,7 @@ function checkCollision2(){
   })
 }
 
-
+///ATAQUE 3
 
 class Attack3 {
   constructor(x, y, w, h) {
@@ -215,6 +219,7 @@ class Attack3 {
   }
 }
 
+/// coin
 class Coin {
   constructor(x,y,w,h){
     this.x = x;
@@ -229,8 +234,42 @@ class Coin {
   draw() {
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
     }
+  crashWith(coin) {
+      return (this.x + this.w > coin.x) &&
+             (this.x < coin.x + coin.w) &&
+             (this.y + this.w > coin.y) &&
+             (this.y < coin.y + coin.w)
+     }
+}
+//1check random numbers and 2how to create more coins
+let randomX = Math.floor(Math.random() * 1100)+ 300,
+    randomY = Math.floor(Math.random() * 220);+ 100
+    console.log(randomX,randomY);
+
+function generateCoins(){
+  arrayCoins.push(new Coin(randomX,randomY,40,40));
 }
 
+function drawCoins(){
+  arrayCoins.forEach((array,i) => {
+    array.draw();
+  });
+}
+var puntosCoin = document.getElementById("puntosCoin");
+
+// 3 Checkcollision
+function checkCollisionCoins(){
+  arrayCoins.forEach((array,i) => {
+    if (ninja.crashWith(array)){
+      arrayCoins.splice(i,1);
+      ninja.coins++;
+    }
+    if (ninja.life >= 0)  puntosCoin.innerHTML = ninja.coins;
+  })
+}
+
+
+// 4delay Image
 class Star{
   constructor(x,y,w,h){
     this.x = x;
@@ -253,10 +292,12 @@ function generateStar (){
 }
 
 
+
 //OBJETOS
 /////////////////////////////////////////////
 var board = new Board(),
     ninja = new Ninja(200, 350, 100, 600/10, 0, 0, 600, 5000/10),
+    //coin = new Coin (100,100,40,40);
     cloud1 = new Cloud(20,20,300,200);
 //////////////////////////////////////////////
 
@@ -287,6 +328,8 @@ function update() {
   checkCollision1();
   checkCollision2();
   //generateStar();
+  generateCoins();
+  checkCollisionCoins();
 }
 
 function start(){
