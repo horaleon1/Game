@@ -7,7 +7,6 @@ var canvas = document.getElementById("canvas"),
   currentFrame = 0,
   arrayattack1 = [], arrayattack2 = [];
   
-
 canvas.width = window.innerWidth;
 canvas.height = 500;
 
@@ -98,13 +97,15 @@ class Ninja {
   }
 
   crashWith(ninja) {
-    return (this.x + this.w > ninja.x) &&
-           (this.x < ninja.x + ninja.w) &&
+    return (this.x + this.w -13 > ninja.x) &&
+           (this.x < 13 + ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
 
    }
 }
+
+///ATAQUE 1
 
 class Attack1 {
   constructor(x, y, w, h) {
@@ -123,8 +124,8 @@ class Attack1 {
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
    crashWith(ninja) {
-    return (this.x + this.w > ninja.x) &&
-           (this.x < ninja.x + ninja.w) &&
+    return (this.x + this.w - 13> ninja.x) &&
+           (this.x < 13 - ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
    }
@@ -147,10 +148,15 @@ function checkCollision1(){
     if (ninja.crashWith(array)){
       arrayattack1.splice(i,1);
       ninja.life--;
+      generateStar();
     }
     if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
   })
 }
+
+
+
+////ATAQUE 2
 
 class Attack2 {
   constructor(x, y, w, h) {
@@ -170,7 +176,7 @@ class Attack2 {
     }
 
   crashWith(ninja) {
-      return (this.x + this.w > ninja.x) &&
+      return (this.x + this.w  > ninja.x) &&
              (this.x < ninja.x + ninja.w) &&
              (this.y + this.w > ninja.y) &&
              (this.y < ninja.y + ninja.w)
@@ -192,6 +198,7 @@ function checkCollision2(){
     if (ninja.crashWith(array)){
       arrayattack2.splice(i,1);
       ninja.life--;
+      generateStar();
     }
     if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
   })
@@ -208,15 +215,53 @@ class Attack3 {
   }
 }
 
+class Coin {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/Coin_0000003.png"
+    this.img.onload = this.draw();
+  }
+  draw() {
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+    }
+}
+
+class Star{
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+ 
+    this.img = new Image();
+    this.img.src = "./assets/img/star-2.png"
+    this.img.onload = this.draw();
+  }
+  draw() {
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+    }
+}
+
+function generateStar (){
+  var star1 = new Star(ninja.x,ninja.y,100,100);
+  star1.draw();
+}
+
+
 //OBJETOS
 /////////////////////////////////////////////
 var board = new Board(),
-    ninja = new Ninja(200, 350, 120, 600/10, 0, 0, 600, 5000/10),
+    ninja = new Ninja(200, 350, 100, 600/10, 0, 0, 600, 5000/10),
     cloud1 = new Cloud(20,20,300,200);
 //////////////////////////////////////////////
 
 
-////////MOTOR///////////////
+////////MOTOR/////////////
 function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -238,10 +283,10 @@ function update() {
   //   currentFrame == ++ currentFrame % 3;
   // }
   // frames++;  
-  
+  //colisiones
   checkCollision1();
   checkCollision2();
-
+  //generateStar();
 }
 
 function start(){
