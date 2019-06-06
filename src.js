@@ -5,7 +5,7 @@ var canvas = document.getElementById("canvas"),
   gravedad = 4,
   frames = 0,
   currentFrame = 0,
-  arrayattack1 = [];
+  arrayattack1 = [], arrayattack2 = [];
   
 
 canvas.width = window.innerWidth;
@@ -97,7 +97,7 @@ class Ninja {
     if (this.y > 0 && this.y + this.h <= 500) this.y += 30;
   }
 
-  crashwith(ninja) {
+  crashWith(ninja) {
     return (this.x + this.w > ninja.x) &&
            (this.x < ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
@@ -119,18 +119,14 @@ class Attack1 {
   }
 
   draw() {
-    // context.fillStyle = "rgb(30,144,255)";
-    // context.fillRect(this.x, this.y, this.w, this.h);
     this.x -= 2;
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
- // 13 horas jun 05
-   crashwith(ninja) {
+   crashWith(ninja) {
     return (this.x + this.w > ninja.x) &&
            (this.x < ninja.x + ninja.w) &&
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
-
    }
 }
 
@@ -146,9 +142,9 @@ function drawAttack1(){
 
 var vidasId = document.getElementById('vidas');
  
-function checkCollision(){
+function checkCollision1(){
   arrayattack1.forEach((array,i) => {
-    if (ninja.crashwith(array)){
+    if (ninja.crashWith(array)){
       arrayattack1.splice(i,1);
       ninja.life--;
     }
@@ -156,28 +152,52 @@ function checkCollision(){
   })
 }
 
-
-
-//vidasId = ninja.life;
-
-
-
-
 class Attack2 {
   constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/star.png"
+    this.img.onload = this.draw();
   }
   draw() {
-    context.fillStyle = "rgb(255,69,0)";
-    context.fillRect(this.x, this.y, this.w, this.h);
-  }
-  moveDown() {
-    if (this.y > 0) this.y += 450;
-  }
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+     if ( this.y < 350) this.y += 2;
+     if (this.y === 350) this.x += 2;
+    }
+
+  crashWith(ninja) {
+      return (this.x + this.w > ninja.x) &&
+             (this.x < ninja.x + ninja.w) &&
+             (this.y + this.w > ninja.y) &&
+             (this.y < ninja.y + ninja.w)
+     }
 }
+
+function generateAttack2(){
+  arrayattack2.push(new Attack2(10,10,90,50));
+}
+
+function drawAttack2(){
+  arrayattack2.forEach(function(array,i){
+      array.draw();
+  });
+}
+
+function checkCollision2(){
+  arrayattack2.forEach((array,i) => {
+    if (ninja.crashWith(array)){
+      arrayattack2.splice(i,1);
+      ninja.life--;
+    }
+    if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
+  })
+}
+
+
 
 class Attack3 {
   constructor(x, y, w, h) {
@@ -189,13 +209,10 @@ class Attack3 {
 }
 
 //OBJETOS
-
+/////////////////////////////////////////////
 var board = new Board(),
     ninja = new Ninja(200, 350, 120, 600/10, 0, 0, 600, 5000/10),
-    //cohete
-    //attack1 = new Attack1(400, 450, 90, 50),
     cloud1 = new Cloud(20,20,300,200);
-    //attack2 = new Attack2(800, 50, 50, 50);
 //////////////////////////////////////////////
 
 
@@ -204,12 +221,15 @@ function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
   board.draw();
+  // crea nubes
+  cloud1.draw();
   //da gravedad al ninja y cae adelante en cada brinco
   if (ninja.y < canvas.height - 160) ninja.gravity();
   //crea ninja
   ninja.draw();
   // Dibuja el attaque 1;
   drawAttack1()
+  drawAttack2();
   //ataque1
   //attack1.draw();
   //ataque2
@@ -218,8 +238,9 @@ function update() {
   //   currentFrame == ++ currentFrame % 3;
   // }
   // frames++;  
-  cloud1.draw();
-  checkCollision();
+  
+  checkCollision1();
+  checkCollision2();
 
 }
 
@@ -245,33 +266,38 @@ window.addEventListener("keydown", e => {
 //boton1
 let countAttack1 = document.getElementById("buttonAttack1"),
     buttonAttack1 = document.getElementById("button1"),
-    conteo1 = 5, conte1B = 5;
+    conteo1 = 5, conteo1B = 5;
 
 function menosUno() {
   if (conteo1 > 0) conteo1--;
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
-  if(conte1B > 0) { 
+  if(conteo1B > 0) { 
   generateAttack1();
-  conte1B--;
+  conteo1B--;
   }
   menosUno();
 });
 
 //boton2
 let countAttack2 = document.getElementById("buttonAttack2"),
-  buttonAttack2 = document.getElementById("button2"),
-  conteo2 = 3;
+    buttonAttack2 = document.getElementById("button2"),
+    conteo2 = 3, conteo2B = 3;
 
 function menosUno2() {
   if (conteo2 > 0) conteo2--;
   countAttack2.innerHTML = conteo2;
 }
 buttonAttack2.addEventListener("click", e => {
-  attack2.moveDown();
+  if(conteo2B > 0) {
+  generateAttack2();
   menosUno2();
+  conteo2B--;
+  }
 });
+
+
 //boton3
 let countAttack3 = document.getElementById("buttonAttack3"),
   buttonAttack3 = document.getElementById("button3"),
@@ -281,6 +307,7 @@ function menosUno3() {
   if (conteo3 > 0) conteo3--;
   countAttack3.innerHTML = conteo3;
 }
+
 buttonAttack3.addEventListener("click", e => {
   menosUno3();
 });
