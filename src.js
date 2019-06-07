@@ -171,12 +171,13 @@ function checkCollision1(){
       arrayattack1.splice(i,1);
       ninja.life--;
       generateStar();
+      sound1.play();
     }
     if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
   })
 }
 
-
+var sound1 = new Audio ("./assets/Sounds/glob_explosion.wav");
 
 ////ATAQUE 2  SHURIKEN
 
