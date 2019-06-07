@@ -6,7 +6,7 @@ var canvas = document.getElementById("canvas"),
   frames = 0,
   currentFrame = 0,
   arrayattack1 = [], arrayattack2 = [],
-  arrayCoins = [], arrayLifes = [], lifes = 3;
+  arrayCoins = [], arrayLifes = [], lives = 3;
   
 canvas.width = window.innerWidth;
 canvas.height = 500;
@@ -75,6 +75,9 @@ class Ninja {
     this.life = 3;
     this.coins = 0;
 
+    this.isJumping = false;
+    //this.isCollecting = false;
+
   }
   draw() {
     context.drawImage(this.img,this.mx,this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
@@ -82,7 +85,7 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
-    this.x += 1;
+    this.x += 2.5;
   }
 
   moveRight() {
@@ -95,7 +98,15 @@ class Ninja {
   }
 
   moveJump() {
-    if (this.y < 500 && this.y > 30) this.y -= 100;
+    if(this.y > 320) {
+      this.isJumping = true;
+      console.log(ninja);
+    }
+    if (this.y < 500 && this.y > 30 && this.isJumping) {
+      this.y -= 200;
+      
+      this.isJumping = false;
+    }
   }
 
   moveDown() {
@@ -108,6 +119,10 @@ class Ninja {
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
    }
+
+  // crashWith(ninja){
+  //   return (this.x + this.w  > ninja.x)
+  // }
 }
 
 
@@ -127,19 +142,19 @@ class Attack1 {
   }
 
   draw() {
-    this.x -= 2;
+    this.x -= 3;
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
-   crashWith(ninja) {
-    return (this.x + this.w - 13> ninja.x) &&
-           (this.x < 13 - ninja.x + ninja.w) &&
-           (this.y + this.w > ninja.y) &&
-           (this.y < ninja.y + ninja.w)
-   }
+  //  crashWith(ninja) {
+  //   return (this.x + this.w - 13> ninja.x) &&
+  //          (this.x < 13 - ninja.x + ninja.w) &&
+  //          (this.y + this.w > ninja.y) &&
+  //          (this.y < ninja.y + ninja.w)
+  //  }
 }
 
 function generateAttack1(){
-   arrayattack1.push(new Attack1(1200,350,90,50));
+   arrayattack1.push(new Attack1(1200,370,60,30));
 }
 
 function drawAttack1(){
@@ -178,20 +193,20 @@ class Attack2 {
   }
   draw() {
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
-     if ( this.y < 350) this.y += 2;
-     if (this.y === 350) this.x += 2;
+     if ( this.y < 370) this.y += 2;
+     if (this.y === 370) this.x += 2;
     }
 
-  crashWith(ninja) {
-      return (this.x + this.w  > ninja.x) &&
-             (this.x < ninja.x + ninja.w) &&
-             (this.y + this.w > ninja.y) &&
-             (this.y < ninja.y + ninja.w)
-     }
+  // crashWith(ninja) {
+  //     return (this.x + this.w  > ninja.x) &&
+  //            (this.x < ninja.x + ninja.w) &&
+  //            (this.y + this.w > ninja.y) &&
+  //            (this.y < ninja.y + ninja.w)
+  //    }
 }
 
 function generateAttack2(){
-  arrayattack2.push(new Attack2(10,10,90,50));
+  arrayattack2.push(new Attack2(10,10,40,40));
 }
 
 function drawAttack2(){
@@ -199,6 +214,7 @@ function drawAttack2(){
       array.draw();
   });
 }
+
 
 function checkCollision2(){
   arrayattack2.forEach((array,i) => {
@@ -208,66 +224,6 @@ function checkCollision2(){
       generateStar();
     }
     if (ninja.life >= 0)  vidasId.innerHTML = ninja.life;
-  })
-}
-
-///ATAQUE 3
-
-class Attack3 {
-  constructor(x, y, w, h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-  }
-}
-
-/// COIN = puntos
-class Coin {
-  constructor(x,y,w,h){
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-
-    this.img = new Image();
-    this.img.src = "./assets/img/Coin_0000003.png"
-    this.img.onload = this.draw();
-  }
-  draw() {
-    context.drawImage(this.img,this.x,this.y,this.w,this.h);
-    }
-  crashWith(coin) {
-      return (this.x + this.w > coin.x) &&
-             (this.x < coin.x + coin.w) &&
-             (this.y + this.w > coin.y) &&
-             (this.y < coin.y + coin.w)
-     }
-}
-//1check random numbers and 2how to create more coins
-let randomX = Math.floor(Math.random() * 1100)+ 300,
-    randomY = Math.floor(Math.random() * 220);+ 100
-    console.log(randomX,randomY);
-
-function generateCoins(){
-  arrayCoins.push(new Coin(randomX,randomY,40,40));
-}
-
-function drawCoins(){
-  arrayCoins.forEach((array,i) => {
-    array.draw();
-  });
-}
-var puntosCoin = document.getElementById("puntosCoin");
-
-// 3 Checkcollision
-function checkCollisionCoins(){
-  arrayCoins.forEach((array,i) => {
-    if (ninja.crashWith(array)){
-      arrayCoins.splice(i,1);
-      ninja.coins++;
-    }
-    if (ninja.coins >= 0)  puntosCoin.innerHTML = ninja.coins;
   })
 }
 
@@ -293,6 +249,60 @@ function generateStar (){
   var star1 = new Star(ninja.x,ninja.y,100,100);
   star1.draw();
 }
+
+
+
+/// COIN = puntos
+class Coin {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/Coin_0000003.png"
+    this.img.onload = this.draw();
+  }
+  draw() {
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+    }
+  // crashWith(coin) {
+  //     return (this.x + this.w > coin.x) &&
+  //            (this.x < coin.x + coin.w) &&
+  //            (this.y + this.w > coin.y) &&
+  //            (this.y < coin.y + coin.w)
+  //    }
+}
+
+// var minX = 200, maxX = 1100, minY = 150, maxY = 320;
+// var randomX = Math.random() * (+maxX - +minX) + +minX,
+//     randomY = Math.random() * (+maxY - +minY) + +minY;
+
+// function generateCoins(){
+//   arrayCoins.push(new Coin(randomX,randomY,40,40));
+// }
+
+// function drawCoins(){
+//   arrayCoins.forEach((array,i) => {
+//     array.draw();
+//   });
+// }
+// var puntosCoin = document.getElementById("puntosCoin");
+
+// 3 Checkcollision
+// function checkCollisionCoins(){
+//   arrayCoins.forEach((array,i) => {
+//     if (ninja.crashWith(array)){
+//       arrayCoins.splice(i,1);
+//       ninja.coins++;
+//     }
+//     if (ninja.coins >= 0)  puntosCoin.innerHTML = ninja.coins;
+//   })
+// }
+
+
+
 // 5 Objeto vidas
 class Life {
   constructor(x,y,w,h){
@@ -303,7 +313,7 @@ class Life {
 
     this.img = new Image();
     this.img.src = "./assets/img/Gem-1.png"
-    this.img.onload = this.draw();
+    //this.touched = false;
   }
   draw(){
    context.drawImage(this.img,this.x,this.y,this.w,this.h);
@@ -316,31 +326,60 @@ class Life {
   }
 }
 
-function generateLives(){
-  arrayLifes.push(new Life(250,250,50,40));
-}
 
-function drawLives(){
-  arrayLifes.forEach((array,i) => {
-    array.draw();
-  });
-}
-var vidas = document.getElementById('vidas');
 
-function checkCollisionLifes(){
-  arrayLifes.forEach((array,i) => {
-    if (ninja.crashWith(array)){
-      arrayLifes.splice(i,1);
-      ninja.life++;
-    }
-    if (ninja.life >= 0)  vidas.innerHTML = ninja.life;
-  })
-}
+
+// function generateLives(){
+//        arrayLifes.push(new Life(250,250,50,40));
+//  }
+
+//  function drawLives(){
+//   arrayLifes.forEach((array,i) => {
+//     array.draw();
+//   });
+//  }
+
+
+//  var vidas = document.getElementById('vidas');
+
+//  function checkCollisionLifes(){
+//   arrayLifes.forEach((array,i) => {
+//      if (ninja.crashWith(array)){
+//       arrayLifes.splice(i,1);
+//        ninja.life++;
+//     }
+//       good //if (ninja.life >= 0)  vidas.innerHTML = ninja.life;
+//    })
+//  }
+
+//  function checkCollisionLifes(){
+//  console.log("Longitud del arreglo",arrayLifes.length)
+//  if(ninja.crashWith(arrayLifes[0])){
+//   arrayLifes.pop(0);
+//        ninja.life++;
+//   } 
+
+//      arrayLifes.forEach((array,i) => {
+//    if (ninja.crashWith(array) && ninja.touched == false){
+//       arrayLifes.splice(i,1);
+//       ninja.life++;
+//      }
+//    })
+  
+//    arrayLifes.forEach((array,i) => {
+//     ninja.isCollecting != ninja.isCollecting;
+//     if (ninja.crashWith(array)){
+//       arrayLifes.splice(i,1);
+//       ninja.life++;
+//     }
+//     if (ninja.life >= 0)  vidas.innerHTML = ninja.life;
+//   })
+//  }
 
 
 
 //OBJETOS
-/////////////////////////////////////////////
+
 var board = new Board(),
     ninja = new Ninja(200, 350, 100, 600/10, 0, 0, 600, 5000/10),
     //coin = new Coin (100,100,40,40);
@@ -348,7 +387,7 @@ var board = new Board(),
 
 
 
-////////MOTOR/////////////
+//MOTOR
 function update() {
   // crea
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -360,24 +399,23 @@ function update() {
   //crea ninja
   ninja.draw();
   // Dibuja el attaque 1;
+  //generateAttack1();
   drawAttack1()
   drawAttack2();
-  //ataque1
-  //attack1.draw();
-  //ataque2
-  // attack2.draw();
   // if (frames % 7 == 0){
   //   currentFrame == ++ currentFrame % 3;
   // }
-  // frames++;  
+  //frames++;  
   //colisiones
   checkCollision1();
   checkCollision2();
-  //generateStar();
-  generateCoins();
-  checkCollisionCoins();
-  generateLives();
-  checkCollisionLifes();
+
+  // generateCoins();
+  // drawCoins();
+  // checkCollisionCoins();
+
+  //generateLives();
+  //checkCollisionLifes();
 }
 
 function start(){
@@ -493,8 +531,11 @@ countdown2();
 
 //var finished = "Game Over"
 
-function gameOver(){
-  clearInterval(inicio);
-}
 
+function gameOver(){
+  if (ninja.life === 0)
+  console.log("game over");
+  //clearInterval(update);
+}
+gameOver();
 start();
