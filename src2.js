@@ -9,7 +9,8 @@ var canvas = document.getElementById("canvas"),
   frames = 0,
   currentFrame = 0,
   arrayattack1 = [], arrayattack2 = [],
-  arrayCoins = [], arrayLifes = [], lives = 3;
+  arrayCoins1 = [], arrayCoins2 = [],arrayCoins3 = [],
+  arrayLifes = [], lives = 3;
 
   canvas.width = window.innerWidth;
   canvas.height = 500;
@@ -92,7 +93,7 @@ class Ninja {
   }
 
   moveLeft() {
-    if (this.x > 0) this.x -= 20;
+    if (this.x > -1) this.x -= 20;
   }
 
   moveJump() {
@@ -131,7 +132,7 @@ class Attack1 {
   }
 
   draw() {
-    this.x -= 3;
+    this.x -= 7;
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
   }
 }
@@ -174,8 +175,8 @@ class Attack2 {
   }
   draw() {
     context.drawImage(this.img,this.x,this.y,this.w,this.h);
-     if ( this.y < 370) this.y += 2;
-     if (this.y === 370) this.x += 2;
+     if ( this.y < 370) this.y += 1;
+     if (this.y === 370) this.x += 8;
     }
 }
 //Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
@@ -224,8 +225,8 @@ function generateStar (){
   var star1 = new Star(ninja.x,ninja.y,100,100);
   star1.draw();
 }
-//Moneda
-class Coin {
+//Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
+class Coin1 {
   constructor(x,y,w,h){
     this.x = x;
     this.y = y;
@@ -241,23 +242,65 @@ class Coin {
   }
 }
 //funciones Monedas
-function generateCoins(){
+function generateCoins1(){
 
-  arrayCoins.forEach((array) => array.draw());
+  arrayCoins1.forEach((array) => array.draw());
 
-  var x = Math.random() * (+500 - +200) + +200,
-      y = Math.random() * (+320 - +150) + +150;
+  var x = Math.random() * (+250 - +0) + +0,
+      y = Math.random() * (+300 - +150) + +150;
   
-      if (frames % 250 === 0) arrayCoins.push(new Coin(x,y,40,40));
-  
+      if (frames % 150 === 0) {
+        if(arrayCoins1.length < 3) arrayCoins1.push(new Coin1(x,y,40,40)); 
+      } 
 }
 
 var coin = document.getElementById('puntosCoin');
 //colision Moneda
- function checkCollisionCoins(){
-  arrayCoins.forEach((array,i) => {
+ function checkCollisionCoins1(){
+  arrayCoins1.forEach((array,i) => {
      if (ninja.crashWith(array)){
-      arrayCoins.splice(i,1);
+      arrayCoins1.splice(i,1);
+       ninja.coins++;
+    }
+     if (ninja.coins >= 0)  coin.innerHTML = ninja.coins;
+   })
+ }
+
+ //Moneda 2
+class Coin2 {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/Coin_0000003.png";
+    this.img.onload = this.draw();
+  }
+  draw(){
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+  }
+}
+//funciones Monedas
+function generateCoins2(){
+
+  arrayCoins2.forEach((array) => array.draw());
+
+  var x = Math.random() * (+900 - +500) + +500,
+      y = Math.random() * (+300 - +150) + +150;
+  
+      if (frames % 300 === 0) {
+        if(arrayCoins2.length < 5) arrayCoins2.push(new Coin2(x,y,40,40)); 
+      } 
+}
+
+var coin = document.getElementById('puntosCoin');
+//colision Moneda 2
+ function checkCollisionCoins2(){
+  arrayCoins2.forEach((array,i) => {
+     if (ninja.crashWith(array)){
+      arrayCoins2.splice(i,1);
        ninja.coins++;
     }
      if (ninja.coins >= 0)  coin.innerHTML = ninja.coins;
@@ -279,20 +322,20 @@ var coin = document.getElementById('puntosCoin');
      context.drawImage(this.img,this.x,this.y,this.w,this.h);
    }
  }
- //funciones Monedas
+ //funciones Vidas
 function generateLifes(){
 
   arrayLifes.forEach((array) => array.draw());
 
   var x = Math.random() * (+500 - +200) + +200,
-      y = Math.random() * (+320 - +150) + +150;
+      y = Math.random() * (+300 - +150) + +150;
 
-  if (frames % 250 === 0) arrayLifes.push(new life(x,y,40,40));
+  if (frames % 500 === 0) arrayLifes.push(new life(x,y,40,40));
   
 }
 
 var vidas = document.getElementById('vidas');
-//colision Moneda
+//colision Vidas
  function checkCollisionLifes(){
   arrayLifes.forEach((array,i) => {
      if (ninja.crashWith(array)){
@@ -329,11 +372,14 @@ function update(){
   checkCollision1();
   checkCollision2();
 
-  generateCoins();
-  checkCollisionCoins();
+  generateCoins1();
+  checkCollisionCoins1();
 
-  generateLifes();
-  checkCollisionLifes();
+  generateCoins2();
+  checkCollisionCoins2();
+
+  //generateLifes();
+  //checkCollisionLifes();
 }
 
 
