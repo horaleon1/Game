@@ -10,7 +10,7 @@ var canvas = document.getElementById("canvas"),
   currentFrame = 0,
   arrayattack1 = [], arrayattack2 = [],
   arrayCoins1 = [], arrayCoins2 = [],arrayCoins3 = [],
-  arrayLifes = [], lives = 3;
+  arrayLifes1 = [], arrayLifes2 = [], lives = 3;
 
   canvas.width = window.innerWidth;
   canvas.height = 500;
@@ -307,7 +307,48 @@ var coin = document.getElementById('puntosCoin');
    })
  }
 
- class life{
+ //Moneda 3
+class Coin3 {
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/Coin_0000003.png";
+    this.img.onload = this.draw();
+  }
+  draw(){
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+  }
+}
+//funciones Monedas
+function generateCoins3(){
+
+  arrayCoins3.forEach((array) => array.draw());
+
+  var x = Math.random() * (+1399 - +1170) + +1170,
+      y = Math.random() * (+300 - +150) + +150;
+  
+      if (frames % 150 === 0) {
+        if(arrayCoins3.length < 3) arrayCoins3.push(new Coin3(x,y,40,40)); 
+      } 
+}
+
+var coin = document.getElementById('puntosCoin');
+//colision Moneda 2
+ function checkCollisionCoins3(){
+  arrayCoins3.forEach((array,i) => {
+     if (ninja.crashWith(array)){
+      arrayCoins3.splice(i,1);
+       ninja.coins++;
+    }
+     if (ninja.coins >= 0)  coin.innerHTML = ninja.coins;
+   })
+ }
+//Vidas 1 
+ class Life1{
    constructor(x,y,w,h){
      this.x = x;
      this.y = y;
@@ -323,28 +364,71 @@ var coin = document.getElementById('puntosCoin');
    }
  }
  //funciones Vidas
-function generateLifes(){
+function generateLifes1(){
 
-  arrayLifes.forEach((array) => array.draw());
+  arrayLifes1.forEach((array) => array.draw());
 
-  var x = Math.random() * (+500 - +200) + +200,
+  var x = Math.random() * (+490 - +260) + +260,
       y = Math.random() * (+300 - +150) + +150;
 
-  if (frames % 500 === 0) arrayLifes.push(new life(x,y,40,40));
-  
+  if (frames % 50 === 0) {
+     if(arrayLifes1.length < 1) arrayLifes1.push(new Life1(x,y,40,40));
+  }
+     
 }
 
 var vidas = document.getElementById('vidas');
 //colision Vidas
- function checkCollisionLifes(){
-  arrayLifes.forEach((array,i) => {
+ function checkCollisionLifes1(){
+  arrayLifes1.forEach((array,i) => {
      if (ninja.crashWith(array)){
-      arrayLifes.splice(i,1);
+      arrayLifes1.splice(i,1);
        ninja.life++;
     }
      if (ninja.life >= 0)  vidas.innerHTML = ninja.life;
    })
  }
+//Vida 2
+ class Life2{
+  constructor(x,y,w,h){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/Gem-1.png";
+    this.img.onload = this.draw();
+  }
+  draw(){
+    context.drawImage(this.img,this.x,this.y,this.w,this.h);
+  }
+}
+//funciones Vidas
+function generateLifes2(){
+
+ arrayLifes2.forEach((array) => array.draw());
+
+ var x = Math.random() * (+1160 - +910) + +910,
+     y = Math.random() * (+300 - +150) + +150;
+
+ if (frames % 100 === 0) {
+    if(arrayLifes2.length < 1) arrayLifes2.push(new Life2(x,y,40,40));
+ }
+    
+}
+
+var vidas = document.getElementById('vidas');
+//colision Vidas
+function checkCollisionLifes2(){
+ arrayLifes2.forEach((array,i) => {
+    if (ninja.crashWith(array)){
+     arrayLifes2.splice(i,1);
+      ninja.life++;
+   }
+    if (ninja.life >= 0)  vidas.innerHTML = ninja.life;
+  })
+}
 
 // OBJETOS 
 var board = new Board(),
@@ -378,8 +462,14 @@ function update(){
   generateCoins2();
   checkCollisionCoins2();
 
-  //generateLifes();
-  //checkCollisionLifes();
+  generateCoins3();
+  checkCollisionCoins3();
+
+  generateLifes1();
+  checkCollisionLifes1();
+
+  generateLifes2();
+  checkCollisionLifes2();
 }
 
 
