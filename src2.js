@@ -213,7 +213,7 @@ function checkCollision2() {
   });
 }
 // Ataque 3 Jugador 2
-//var  random = Math.floor(Math.random() * (+1100 - +200) + +100);
+
 
 class Attack3 {
   constructor(x, y, w, h) {
@@ -225,19 +225,23 @@ class Attack3 {
     this.img = new Image();
     this.img.src = "./assets/img/fire.png";
     this.img.onload = this.draw();
+
+    this.random = Math.floor(Math.random() * (+1100 - +200) + +100);
   }
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
     if (this.y === 450) this.x += 5;
+    if (this.x > 1400) this.y -= 5;
   }
+  
   moving() {
-    this.y -= 5;
+    if ( this.x > this.random) this.y -= 10;
   }
 }
 
 //Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
 function generateAttack3() {
-  arrayattack3.push(new Attack3(1, 450, 100, 80));
+  arrayattack3.push(new Attack3(1, 450, 80, 70));
 }
 
 function drawAttack3() {
@@ -481,8 +485,8 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-  ninja = new Ninja(200, 350, 100, 600 / 10, 0, 0, 600, 5000 / 10),
-  cloud1 = new Cloud(20, 20, 300, 200);
+    ninja = new Ninja(200, 350, 100, 600 / 10, 0, 0, 600, 5000 / 10),
+    cloud1 = new Cloud(20, 20, 300, 200);
 //SONIDOS
 var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
@@ -519,6 +523,9 @@ function update() {
   // checa la colision de las gemas rojas o vidas
   checkCollisionLifes1();
   checkCollisionLifes2();
+
+  //attack3B
+  attack3Attacking();
 }
 
 // ON-MOTOR
@@ -586,15 +593,18 @@ buttonAttack3.addEventListener("click", e => {
   if (conteo3B > 0) {
     generateAttack3();
     menosUno3();
+    conteo3B--;
   }
 });
 
 //BOTON 3B
-var buttonAttack3B = document.getElementById("button3B");
+// var buttonAttack3B = document.getElementById("button3B");
 
-buttonAttack3B.addEventListener("click", e => {
-  attack3Attacking();
-});
+// buttonAttack3B.addEventListener("click", e => {
+  
+//  attack3Attacking();
+
+// });
 
 //BOTON 4
 var countAttack4 = document.getElementById("buttonAttack4"),
