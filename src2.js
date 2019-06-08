@@ -300,7 +300,17 @@ class Coin1 {
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
+  clickable(evento) {
+    return (
+      this.x < evento.layerX &&
+      this.x + this.w > evento.layerX &&
+      this.y < evento.layerY &&
+      this.y + this.w > evento.layerY
+    );
+
+  }
 }
+
 //funciones Monedas
 function generateCoins1() {
   arrayCoins1.forEach(array => array.draw());
@@ -315,6 +325,21 @@ function generateCoins1() {
 
 var coin = document.getElementById("puntosCoin");
 //colision Moneda
+// function checkCollisionCoins1(evento) {
+//   arrayCoins1.forEach((array, i) => {
+//     if (ninja.crashWith(array)) {
+//       arrayCoins1.splice(i, 1);
+//       ninja.coins++;
+//     }
+//     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
+
+//     // if(array.clickable(evento)) {
+//       // console.log('coin', array.x, array.y, array.x + array.w, array.y + array.h)
+//       // console.log('click', evento.layerX, evento.layerY)
+//       // console.log('funciona')
+//     // }
+//   });
+// }
 function checkCollisionCoins1() {
   arrayCoins1.forEach((array, i) => {
     if (ninja.crashWith(array)) {
@@ -324,6 +349,20 @@ function checkCollisionCoins1() {
     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
   });
 }
+
+var player2Coins = document.getElementById("puntosCoin2");
+var coinsPlayer2 = 0
+
+function checkClick1(evento,i){
+  
+  arrayCoins1.forEach((array,i) => {
+     if (array.clickable(evento)){
+       arrayCoins1.splice(i,1);
+       coinsPlayer2++;
+     }
+     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  })
+};
 
 //Moneda 2
 class Coin2 {
@@ -341,7 +380,7 @@ class Coin2 {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
 }
-//funciones Monedas
+//funciones Monedas 2
 function generateCoins2() {
   arrayCoins2.forEach(array => array.draw());
 
@@ -381,7 +420,7 @@ class Coin3 {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
 }
-//funciones Monedas
+//funciones Monedas 3
 function generateCoins3() {
   arrayCoins3.forEach(array => array.draw());
 
@@ -394,7 +433,7 @@ function generateCoins3() {
 }
 
 var coin = document.getElementById("puntosCoin");
-//colision Moneda 2
+//colision Moneda 3
 function checkCollisionCoins3() {
   arrayCoins3.forEach((array, i) => {
     if (ninja.crashWith(array)) {
@@ -517,6 +556,7 @@ function update() {
   checkCollisionCoins1();
   checkCollisionCoins2();
   checkCollisionCoins3();
+
   // Genera gemas rojas que equivalen a una vida del ninja
   generateLifes1();
   generateLifes2();
@@ -581,8 +621,7 @@ buttonAttack2.addEventListener("click", e => {
 //BOTON 3
 var countAttack3 = document.getElementById("buttonAttack3"),
   buttonAttack3 = document.getElementById("button3"),
-  conteo3 = 2,
-  conteo3B = 2;
+  conteo3 = 2, conteo3B = 2;
 
 function menosUno3() {
   if (conteo3 > 0) conteo3--;
@@ -609,15 +648,27 @@ buttonAttack3.addEventListener("click", e => {
 //BOTON 4
 var countAttack4 = document.getElementById("buttonAttack4"),
   buttonAttack4 = document.getElementById("button4"),
-  conteo4 = 10;
+  conteo4 = 10, conteo4B = 10;
 
 function menosUno4() {
   if (conteo4 > 0) conteo4--;
   countAttack4.innerHTML = conteo4;
 }
 buttonAttack4.addEventListener("click", e => {
+  
   menosUno4();
+  conteo4B--;
 });
+
+canvas.addEventListener("click", e => {
+  checkClick1(e);
+});
+
+// function generateAttack4(){
+//   arrayCoins1.forEach((array,i) =>{
+    
+//   });
+// }
 
 //Cuentas Regresivas
 var seg1 = 75,
