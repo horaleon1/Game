@@ -2,11 +2,14 @@
 
 body{
 font-family: 'Indie FLower', cursive;
-margin: 0 auto;
+margin: 0;
+padding: 0;
+
 }
 
 #container{
 width: 100%;
+cursor: url("./assets/img/ninja star move cursor.cur"), auto;
 }
 
 #canvas{
@@ -58,6 +61,7 @@ width:50px;
   font-size: 40px;
   width: 100%;
   margin: 0 auto;
+  
 }
 
 #player1{

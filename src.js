@@ -25,7 +25,6 @@ class Board {
     this.img.onload = this.draw();
   }
   draw() {
-    //canvas.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(this.img,this.x--,this.y,this.w,this.h);
     if(this.x <= -7750){
       this.x=0;
@@ -76,8 +75,6 @@ class Ninja {
     this.coins = 0;
 
     this.isJumping = false;
-    //this.isCollecting = false;
-
   }
   draw() {
     context.drawImage(this.img,this.mx,this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
@@ -119,10 +116,6 @@ class Ninja {
            (this.y + this.w > ninja.y) &&
            (this.y < ninja.y + ninja.w)
    }
-
-  // crashWith(ninja){
-  //   return (this.x + this.w  > ninja.x)
-  // }
 }
 
 
@@ -276,9 +269,37 @@ class Coin {
   //    }
 }
 
-// var minX = 200, maxX = 1100, minY = 150, maxY = 320;
-// var randomX = Math.random() * (+maxX - +minX) + +minX,
-//     randomY = Math.random() * (+maxY - +minY) + +minY;
+function generateCoins(){
+  for (var i = 0; i < arrayCoins.length; i++){
+    //if (arrayCoins.length < 10){
+      //arrayCoins[i].x += 0.1;
+      
+    //}
+      if(arrayCoins.length < 20) arrayCoins[i].draw();
+  }
+  if (frames % 500 === 0){
+
+    var minX = 200, maxX = 1100, minY = 150, maxY = 320;
+    var randomX = Math.random() * (+maxX - +minX) + +minX,
+        randomY = Math.random() * (+maxY - +minY) + +minY;
+
+     arrayCoins.push(new Coin(randomX,300,40,40));
+  }
+}
+
+function checkEnoughCoins(){
+  if (arrayCoins.length < 10) generateCoins();
+}
+function checkCollisionCoins(){
+    arrayCoins.forEach((array,i) => {
+      if (ninja.crashWith(array)){
+        arrayCoins.splice(i,1);
+        ninja.coins++;
+      }
+      if (ninja.coins >= 0)  puntosCoin.innerHTML = ninja.coins;
+    })
+  }
+
 
 // function generateCoins(){
 //   arrayCoins.push(new Coin(randomX,randomY,40,40));
@@ -383,7 +404,6 @@ class Life {
 
 var board = new Board(),
     ninja = new Ninja(200, 350, 100, 600/10, 0, 0, 600, 5000/10),
-    //coin = new Coin (100,100,40,40);
     cloud1 = new Cloud(20,20,300,200);
 
 
@@ -406,14 +426,17 @@ function update() {
   // if (frames % 7 == 0){
   //   currentFrame == ++ currentFrame % 3;
   // }
+
+  //if ( frames % 50 === 0) checkEnoughCoins();
+
   //frames++;  
   //colisiones
   checkCollision1();
   checkCollision2();
-
-  // generateCoins();
+  //generateCoins();
+  
   // drawCoins();
-  // checkCollisionCoins();
+  //checkCollisionCoins();
 
   //generateLives();
   //checkCollisionLifes();
@@ -500,7 +523,7 @@ buttonAttack4.addEventListener("click", e => {
 });
 
 //countdowns
-let seg1 = 75,
+var seg1 = 75,
     seg2 = 75,
    timer1 = document.getElementById("timer1"),
    timer2 = document.getElementById("timer2"),
