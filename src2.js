@@ -379,6 +379,14 @@ class Coin2 {
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
+  clickable(evento) {
+    return (
+      this.x < evento.layerX &&
+      this.x + this.w > evento.layerX &&
+      this.y < evento.layerY &&
+      this.y + this.w > evento.layerY
+    );
+  }
 }
 //funciones Monedas 2
 function generateCoins2() {
@@ -404,6 +412,17 @@ function checkCollisionCoins2() {
   });
 }
 
+function checkClick2(evento,i){
+  arrayCoins2.forEach((array,i) => {
+     if (array.clickable(evento)){
+       arrayCoins2.splice(i,1);
+       coinsPlayer2++;
+     }
+     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  })
+};
+
+
 //Moneda 3
 class Coin3 {
   constructor(x, y, w, h) {
@@ -418,6 +437,14 @@ class Coin3 {
   }
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
+  }
+  clickable(evento) {
+    return (
+      this.x < evento.layerX &&
+      this.x + this.w > evento.layerX &&
+      this.y < evento.layerY &&
+      this.y + this.w > evento.layerY
+    );
   }
 }
 //funciones Monedas 3
@@ -443,6 +470,16 @@ function checkCollisionCoins3() {
     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
   });
 }
+
+function checkClick3(evento,i){
+  arrayCoins3.forEach((array,i) => {
+     if (array.clickable(evento)){
+       arrayCoins3.splice(i,1);
+       coinsPlayer2++;
+     }
+     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  })
+};
 //Vidas 1
 class Life1 {
   constructor(x, y, w, h) {
@@ -662,13 +699,9 @@ buttonAttack4.addEventListener("click", e => {
 
 canvas.addEventListener("click", e => {
   checkClick1(e);
+  checkClick2(e);
+  checkClick3(e);
 });
-
-// function generateAttack4(){
-//   arrayCoins1.forEach((array,i) =>{
-    
-//   });
-// }
 
 //Cuentas Regresivas
 var seg1 = 75,
