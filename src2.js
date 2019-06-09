@@ -16,7 +16,7 @@ var canvas = document.getElementById("canvas"),
   arrayCoins3 = [],
   arrayLifes1 = [],
   arrayLifes2 = [],
-  lives = 3;
+  currentFrame = 0;
 
 canvas.width = window.innerWidth;
 canvas.height = 500;
@@ -307,18 +307,23 @@ function generateStar() {
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
 class Coin1 {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
 
     this.img = new Image();
-    this.img.src = "./assets/img/Coin_0000003.png";
+    this.img.src = "./assets/img/coinS2.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img,currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
   }
   clickable(evento) {
     return (
@@ -339,7 +344,7 @@ function generateCoins1() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 150 === 0) {
-    if (arrayCoins1.length < 3) arrayCoins1.push(new Coin1(x, y, 40, 40));
+    if (arrayCoins1.length < 3) arrayCoins1.push(new Coin1(x, y, 160/4, 40,0,0,160/4,40));
   }
 }
 
@@ -371,18 +376,23 @@ function checkClick1(evento,i){
 
 //Moneda 2
 class Coin2 {
-  constructor(x, y, w, h) {
+  constructor(x, y, w,h,mx,my,mw,mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
+    
     this.img = new Image();
-    this.img.src = "./assets/img/Coin_0000003.png";
+    this.img.src = "./assets/img/coinS2.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img,currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
   }
   clickable(evento) {
     return (
@@ -401,7 +411,7 @@ function generateCoins2() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 300 === 0) {
-    if (arrayCoins2.length < 5) arrayCoins2.push(new Coin2(x, y, 40, 40));
+    if (arrayCoins2.length < 5) arrayCoins2.push(new Coin2(x, y, 160/4, 40,0,0,160/4,40));
   }
 }
 
@@ -430,18 +440,23 @@ function checkClick2(evento,i){
 
 //Moneda 3
 class Coin3 {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h,mx,my,mw,mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
+
     this.img = new Image();
-    this.img.src = "./assets/img/Coin_0000003.png";
+    this.img.src = "./assets/img/coinS2.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img, currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
   }
   clickable(evento) {
     return (
@@ -460,7 +475,7 @@ function generateCoins3() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 150 === 0) {
-    if (arrayCoins3.length < 3) arrayCoins3.push(new Coin3(x, y, 40, 40));
+    if (arrayCoins3.length < 3) arrayCoins3.push(new Coin3(x, y, 160/4, 40,0,0,160/4,40));
   }
 }
 
@@ -574,7 +589,7 @@ var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
 //MOTOR
 function update() {
-  frames++;
+ 
   //Background
   context.clearRect(0, 0, canvas.width, canvas.height);
   board.draw();
@@ -584,6 +599,11 @@ function update() {
   //nube
   cloud1.draw();
   if (cloud1.x > 1400) cloud2.draw();
+  //coin1 sprite
+  if(frames % 11 === 0){
+    currentFrame = ++currentFrame % 4;
+  }
+  frames++;
   
   //ataques
   drawAttack1();
@@ -625,7 +645,7 @@ window.addEventListener("keydown", e => {
 
   if (e.keyCode === 38) ninja.moveJump();
 
-  if (e.keyCode === 40) ninja.moveDown();
+  // if (e.keyCode === 40) ninja.moveDown();
 });
 //BOTONES DE ATAQUE
 
