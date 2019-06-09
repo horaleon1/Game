@@ -60,6 +60,25 @@ class Cloud {
     }
   }
 }
+//nube 2 
+class Cloud2 {
+  constructor(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.img = new Image();
+    this.img.src = "./assets/img/cloud.png";
+    this.onload = this.draw();
+  }
+  draw() {
+    context.drawImage(this.img, this.x--, this.y, this.w, this.h);
+    if (this.x > 0) {
+      this.x -= 0.5;
+    }
+  }
+}
 // Ninja 1 Personaja Principal Jugador 1
 class Ninja {
   constructor(x, y, w, h, mx, my, mw, mh) {
@@ -265,6 +284,7 @@ function attack3Attacking() {
 // Ataque 4 Jugador 2
 
 //Stars show after collision
+//change image
 class Star {
   constructor(x, y, w, h) {
     this.x = x;
@@ -273,7 +293,7 @@ class Star {
     this.h = h;
 
     this.img = new Image();
-    this.img.src = "./assets/img/star-2.png";
+    this.img.src = "./assets/img/explosion.png";
     this.img.onload = this.draw();
   }
   draw() {
@@ -282,7 +302,7 @@ class Star {
 }
 // funcion genera estrellas
 function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y, 100, 100);
+  var star1 = new Star(ninja.x, ninja.y, 120, 120);
   star1.draw();
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
@@ -324,22 +344,7 @@ function generateCoins1() {
 }
 
 var coin = document.getElementById("puntosCoin");
-//colision Moneda
-// function checkCollisionCoins1(evento) {
-//   arrayCoins1.forEach((array, i) => {
-//     if (ninja.crashWith(array)) {
-//       arrayCoins1.splice(i, 1);
-//       ninja.coins++;
-//     }
-//     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
 
-//     // if(array.clickable(evento)) {
-//       // console.log('coin', array.x, array.y, array.x + array.w, array.y + array.h)
-//       // console.log('click', evento.layerX, evento.layerY)
-//       // console.log('funciona')
-//     // }
-//   });
-// }
 function checkCollisionCoins1() {
   arrayCoins1.forEach((array, i) => {
     if (ninja.crashWith(array)) {
@@ -563,6 +568,7 @@ function checkCollisionLifes2() {
 var board = new Board(),
     ninja = new Ninja(200, 350, 100, 600 / 10, 0, 0, 600, 5000 / 10),
     cloud1 = new Cloud(20, 20, 300, 200);
+    cloud2 = new Cloud2(1400,20,250,200);
 //SONIDOS
 var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
@@ -577,6 +583,8 @@ function update() {
   if (ninja.y < canvas.height - 160) ninja.gravity();
   //nube
   cloud1.draw();
+  if (cloud1.x > 1400) cloud2.draw();
+  
   //ataques
   drawAttack1();
   drawAttack2();
@@ -690,12 +698,14 @@ var countAttack4 = document.getElementById("buttonAttack4"),
 function menosUno4() {
   if (conteo4 > 0) conteo4--;
   countAttack4.innerHTML = conteo4;
+
+
 }
-buttonAttack4.addEventListener("click", e => {
+// buttonAttack4.addEventListener("click", e => {
   
-  menosUno4();
-  conteo4B--;
-});
+//   menosUno4();
+//   conteo4B--;
+// });
 
 canvas.addEventListener("click", e => {
   checkClick1(e);

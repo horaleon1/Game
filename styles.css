@@ -10,6 +10,8 @@ padding: 0;
 #container{
 width: 100%;
 cursor: url("./assets/img/ninja star move cursor.cur"), auto;
+margin: 0;
+padding: 0;
 }
 
 #canvas{
@@ -19,7 +21,7 @@ height: 500px;
 }
 
 .second{
-  margin: 0;
+  margin: -10px;
   border: 2px solid black;
   background: lightgreen;
   height: 200px;
@@ -67,7 +69,10 @@ width:50px;
 #player1{
   list-style-type: none;
   float: left;
-  
+  margin: 5px;
+}
+#player2{
+  margin: 5px;
 }
 #player1 li {
   margin-right: 70px;
@@ -84,7 +89,7 @@ li{
   color:blue;
   font-size: 30px;
 }
-.vidas{
+#vidaCara{
   height: 40px;
   width: 40px;
 }
