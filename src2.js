@@ -4,7 +4,7 @@
 var canvas = document.getElementById("canvas"),
   context = canvas.getContext("2d"),
   cronometro,
-  gravedad = 4,
+  gravedad = 3.7,
   frames = 0,
   currentFrame = 0,
   arrayattack1 = [],
@@ -95,7 +95,7 @@ class Ninja {
     this.velY = 0;
 
     this.img = new Image();
-    this.img.src = "./assets/img/Ninja-Run.png";
+    this.img.src = "./assets/img/ninjaS.png";
     this.img.onload = this.draw();
 
     this.life = 3;
@@ -106,7 +106,7 @@ class Ninja {
   draw() {
     context.drawImage(
       this.img,
-      this.mx,
+      currentFrame * (1000/10),
       this.my,
       this.mw,
       this.mh,
@@ -155,26 +155,31 @@ class Ninja {
 }
 //Ataque 1 (Cohete) Jugador 2
 class Attack1 {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h,mx,my,mw,mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
+
     this.img = new Image();
-    this.img.src = "./assets/img/ROCKET0000.png";
+    this.img.src = "./assets/img/coheteS.png";
     this.img.onload = this.draw();
   }
 
   draw() {
     this.x -= 7;
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img, currentFrame * (180/3),this.my,this.mw,this.mh,  this.x, this.y, this.w, this.h);
   }
 }
 //Funciones Ataque 1 Generacion, Dibujo y Colision Jugador 2
 
 function generateAttack1() {
-  arrayattack1.push(new Attack1(1200, 370, 60, 30));
+  arrayattack1.push(new Attack1(1400, 370, 180/3, 30,0,0,180/3,30));
 }
 
 function drawAttack1() {
@@ -196,25 +201,30 @@ function checkCollision1() {
 }
 // Ataque 2 Shuriken(Ninja Star) Jugador 2
 class Attack2 {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h,mx,my,mw,mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
+
     this.img = new Image();
-    this.img.src = "./assets/img/star.png";
+    this.img.src = "./assets/img/shurikenS.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img, currentFrame * (300/6),this.my,this.mw,this.mh,this.x, this.y, this.w, this.h);
     if (this.y < 370) this.y += 1;
     if (this.y === 370) this.x += 8;
   }
 }
 //Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
 function generateAttack2() {
-  arrayattack2.push(new Attack2(10, 10, 40, 40));
+  arrayattack2.push(new Attack2(10, 10, 300/6, 40,0,0,300/6,40));
 }
 
 function drawAttack2() {
@@ -249,7 +259,7 @@ class Attack3 {
   }
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
-    if (this.y === 450) this.x += 5;
+    if (this.y === 455) this.x += 5;
     if (this.x > 1400) this.y -= 5;
   }
   
@@ -260,7 +270,7 @@ class Attack3 {
 
 //Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
 function generateAttack3() {
-  arrayattack3.push(new Attack3(1, 450, 80, 70));
+  arrayattack3.push(new Attack3(1, 455, 80, 70));
 }
 
 function drawAttack3() {
@@ -286,23 +296,28 @@ function attack3Attacking() {
 //Stars show after collision
 //change image
 class Star {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h,mx,my,mw,mh) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
 
+    this.mx = mx;
+    this.my = my;
+    this.mw = mw;
+    this.mh = mh;
+
     this.img = new Image();
-    this.img.src = "./assets/img/explosion.png";
+    this.img.src = "./assets/img/bombS.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    context.drawImage(this.img,currentFrame *(700/100),this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
   }
 }
 // funcion genera estrellas
 function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y, 120, 120);
+  var star1 = new Star(ninja.x, ninja.y, 700/100, 120,0,0,700/10,120);
   star1.draw();
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
@@ -581,7 +596,7 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-    ninja = new Ninja(200, 350, 100, 600 / 10, 0, 0, 600, 5000 / 10),
+    ninja = new Ninja(200, 355, 1000/10, 60, 0, 0, 1000/10,60),
     cloud1 = new Cloud(20, 20, 300, 200);
     cloud2 = new Cloud2(1400,20,250,200);
 //SONIDOS
@@ -589,7 +604,6 @@ var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
 //MOTOR
 function update() {
- 
   //Background
   context.clearRect(0, 0, canvas.width, canvas.height);
   board.draw();
@@ -599,12 +613,11 @@ function update() {
   //nube
   cloud1.draw();
   if (cloud1.x > 1400) cloud2.draw();
-  //coin1 sprite
-  if(frames % 11 === 0){
+  //coin1,2,3 sprite
+  if(frames % 10 === 0){
     currentFrame = ++currentFrame % 4;
   }
   frames++;
-  
   //ataques
   drawAttack1();
   drawAttack2();
@@ -621,14 +634,12 @@ function update() {
   checkCollisionCoins1();
   checkCollisionCoins2();
   checkCollisionCoins3();
-
   // Genera gemas rojas que equivalen a una vida del ninja
   generateLifes1();
   generateLifes2();
   // checa la colision de las gemas rojas o vidas
   checkCollisionLifes1();
   checkCollisionLifes2();
-
   //attack3B
   attack3Attacking();
 }
