@@ -642,6 +642,7 @@ function update() {
   checkCollisionLifes2();
   //attack3B
   attack3Attacking();
+  gameOver();
 }
 
 // ON-MOTOR
@@ -758,7 +759,7 @@ function countdown1() {
     timer1.innerHTML = auxTimer;
     seg1--;
 
-    if (auxTimer == 0) clearInterval(cronometro1);
+    if (auxTimer == 0 || ninja.life === 0) clearInterval(cronometro1);
   }, 1000);
 }
 countdown1();
@@ -770,9 +771,12 @@ function countdown2() {
     timer2.innerHTML = auxTimer;
     seg2--;
 
-    if (auxTimer == 0) clearInterval(cronometro2);
+    if (auxTimer == 0 || ninja.life === 0) clearInterval(cronometro2);
   }, 1000);
 }
 countdown2();
 
+function gameOver(){
+  if (ninja.life === 0) clearInterval(inicio);
+}
 start();
