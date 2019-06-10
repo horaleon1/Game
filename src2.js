@@ -60,7 +60,7 @@ class Cloud {
     }
   }
 }
-//nube 2 
+//nube 2
 class Cloud2 {
   constructor(x, y, w, h) {
     this.x = x;
@@ -106,7 +106,7 @@ class Ninja {
   draw() {
     context.drawImage(
       this.img,
-      currentFrame * (1000/10),
+      currentFrame * (1000 / 10),
       this.my,
       this.mw,
       this.mh,
@@ -155,7 +155,7 @@ class Ninja {
 }
 //Ataque 1 (Cohete) Jugador 2
 class Attack1 {
-  constructor(x, y, w, h,mx,my,mw,mh) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -173,13 +173,23 @@ class Attack1 {
 
   draw() {
     this.x -= 7;
-    context.drawImage(this.img, currentFrame * (180/3),this.my,this.mw,this.mh,  this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (180 / 3),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
 }
 //Funciones Ataque 1 Generacion, Dibujo y Colision Jugador 2
 
 function generateAttack1() {
-  arrayattack1.push(new Attack1(1400, 370, 180/3, 30,0,0,180/3,30));
+  arrayattack1.push(new Attack1(1400, 370, 180 / 3, 30, 0, 0, 180 / 3, 30));
 }
 
 function drawAttack1() {
@@ -201,7 +211,7 @@ function checkCollision1() {
 }
 // Ataque 2 Shuriken(Ninja Star) Jugador 2
 class Attack2 {
-  constructor(x, y, w, h,mx,my,mw,mh) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -217,14 +227,24 @@ class Attack2 {
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, currentFrame * (300/6),this.my,this.mw,this.mh,this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (300 / 6),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
     if (this.y < 370) this.y += 1;
     if (this.y === 370) this.x += 8;
   }
 }
 //Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
 function generateAttack2() {
-  arrayattack2.push(new Attack2(10, 10, 300/6, 40,0,0,300/6,40));
+  arrayattack2.push(new Attack2(10, 10, 300 / 6, 40, 0, 0, 300 / 6, 40));
 }
 
 function drawAttack2() {
@@ -242,7 +262,6 @@ function checkCollision2() {
   });
 }
 // Ataque 3 Jugador 2
-
 
 class Attack3 {
   constructor(x, y, w, h) {
@@ -262,9 +281,9 @@ class Attack3 {
     if (this.y === 455) this.x += 5;
     if (this.x > 1400) this.y -= 5;
   }
-  
+
   moving() {
-    if ( this.x > this.random) this.y -= 10;
+    if (this.x > this.random) this.y -= 10;
   }
 }
 
@@ -296,7 +315,7 @@ function attack3Attacking() {
 //Stars show after collision
 //change image
 class Star {
-  constructor(x, y, w, h,mx,my,mw,mh) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -312,12 +331,22 @@ class Star {
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img,currentFrame *(700/100),this.my,this.mw,this.mh, this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (700 / 100),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
 }
 // funcion genera estrellas
 function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y, 700/100, 120,0,0,700/10,120);
+  var star1 = new Star(ninja.x, ninja.y, 700 / 100, 120, 0, 0, 700 / 10, 120);
   star1.draw();
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
@@ -327,7 +356,7 @@ class Coin1 {
     this.y = y;
     this.w = w;
     this.h = h;
-    
+
     this.mx = mx;
     this.my = my;
     this.mw = mw;
@@ -338,7 +367,17 @@ class Coin1 {
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img,currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (160 / 4),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
   clickable(evento) {
     return (
@@ -347,7 +386,6 @@ class Coin1 {
       this.y < evento.layerY &&
       this.y + this.w > evento.layerY
     );
-
   }
 }
 
@@ -359,7 +397,8 @@ function generateCoins1() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 150 === 0) {
-    if (arrayCoins1.length < 3) arrayCoins1.push(new Coin1(x, y, 160/4, 40,0,0,160/4,40));
+    if (arrayCoins1.length < 3)
+      arrayCoins1.push(new Coin1(x, y, 160 / 4, 40, 0, 0, 160 / 4, 40));
   }
 }
 
@@ -376,22 +415,21 @@ function checkCollisionCoins1() {
 }
 
 var player2Coins = document.getElementById("puntosCoin2");
-var coinsPlayer2 = 0
+var coinsPlayer2 = 0;
 
-function checkClick1(evento,i){
-  
-  arrayCoins1.forEach((array,i) => {
-     if (array.clickable(evento)){
-       arrayCoins1.splice(i,1);
-       coinsPlayer2++;
-     }
-     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
-  })
-};
+function checkClick1(evento, i) {
+  arrayCoins1.forEach((array, i) => {
+    if (array.clickable(evento)) {
+      arrayCoins1.splice(i, 1);
+      coinsPlayer2++;
+    }
+    if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  });
+}
 
 //Moneda 2
 class Coin2 {
-  constructor(x, y, w,h,mx,my,mw,mh) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -401,13 +439,23 @@ class Coin2 {
     this.my = my;
     this.mw = mw;
     this.mh = mh;
-    
+
     this.img = new Image();
     this.img.src = "./assets/img/coinS2.png";
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img,currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (160 / 4),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
   clickable(evento) {
     return (
@@ -426,7 +474,8 @@ function generateCoins2() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 300 === 0) {
-    if (arrayCoins2.length < 5) arrayCoins2.push(new Coin2(x, y, 160/4, 40,0,0,160/4,40));
+    if (arrayCoins2.length < 5)
+      arrayCoins2.push(new Coin2(x, y, 160 / 4, 40, 0, 0, 160 / 4, 40));
   }
 }
 
@@ -442,20 +491,19 @@ function checkCollisionCoins2() {
   });
 }
 
-function checkClick2(evento,i){
-  arrayCoins2.forEach((array,i) => {
-     if (array.clickable(evento)){
-       arrayCoins2.splice(i,1);
-       coinsPlayer2++;
-     }
-     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
-  })
-};
-
+function checkClick2(evento, i) {
+  arrayCoins2.forEach((array, i) => {
+    if (array.clickable(evento)) {
+      arrayCoins2.splice(i, 1);
+      coinsPlayer2++;
+    }
+    if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  });
+}
 
 //Moneda 3
 class Coin3 {
-  constructor(x, y, w, h,mx,my,mw,mh) {
+  constructor(x, y, w, h, mx, my, mw, mh) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -471,7 +519,17 @@ class Coin3 {
     this.img.onload = this.draw();
   }
   draw() {
-    context.drawImage(this.img, currentFrame * (160/4),this.my, this.mw,this.mh, this.x, this.y, this.w, this.h);
+    context.drawImage(
+      this.img,
+      currentFrame * (160 / 4),
+      this.my,
+      this.mw,
+      this.mh,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
   clickable(evento) {
     return (
@@ -490,7 +548,8 @@ function generateCoins3() {
     y = Math.random() * (+300 - +150) + +150;
 
   if (frames % 150 === 0) {
-    if (arrayCoins3.length < 3) arrayCoins3.push(new Coin3(x, y, 160/4, 40,0,0,160/4,40));
+    if (arrayCoins3.length < 3)
+      arrayCoins3.push(new Coin3(x, y, 160 / 4, 40, 0, 0, 160 / 4, 40));
   }
 }
 
@@ -506,15 +565,15 @@ function checkCollisionCoins3() {
   });
 }
 
-function checkClick3(evento,i){
-  arrayCoins3.forEach((array,i) => {
-     if (array.clickable(evento)){
-       arrayCoins3.splice(i,1);
-       coinsPlayer2++;
-     }
-     if ( coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
-  })
-};
+function checkClick3(evento, i) {
+  arrayCoins3.forEach((array, i) => {
+    if (array.clickable(evento)) {
+      arrayCoins3.splice(i, 1);
+      coinsPlayer2++;
+    }
+    if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
+  });
+}
 //Vidas 1
 class Life1 {
   constructor(x, y, w, h) {
@@ -596,9 +655,9 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-    ninja = new Ninja(200, 355, 1000/10, 60, 0, 0, 1000/10,60),
-    cloud1 = new Cloud(20, 20, 300, 200);
-    cloud2 = new Cloud2(1400,20,250,200);
+  ninja = new Ninja(200, 355, 1000 / 10, 60, 0, 0, 1000 / 10, 60),
+  cloud1 = new Cloud(20, 20, 300, 200);
+cloud2 = new Cloud2(1400, 20, 250, 200);
 //SONIDOS
 var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
@@ -614,7 +673,7 @@ function update() {
   cloud1.draw();
   if (cloud1.x > 1400) cloud2.draw();
   //coin1,2,3 sprite
-  if(frames % 10 === 0){
+  if (frames % 10 === 0) {
     currentFrame = ++currentFrame % 4;
   }
   frames++;
@@ -646,9 +705,11 @@ function update() {
 }
 
 // ON-MOTOR
-function start() {
-  inicio = setInterval(update, 1000 / 60);
-}
+// function start() {
+//   inicio = setInterval(update, 1000 / 60);
+// }
+
+inicio = setInterval(update, 1000 / 60);
 // Teclas de movimiento
 window.addEventListener("keydown", e => {
   if (e.keyCode === 39) ninja.moveRight();
@@ -656,6 +717,10 @@ window.addEventListener("keydown", e => {
   if (e.keyCode === 37) ninja.moveLeft();
 
   if (e.keyCode === 38) ninja.moveJump();
+
+  if(gameOver && e.keyCode === 32) {
+    location.reload();
+  }
 
   // if (e.keyCode === 40) ninja.moveDown();
 });
@@ -698,7 +763,8 @@ buttonAttack2.addEventListener("click", e => {
 //BOTON 3
 var countAttack3 = document.getElementById("buttonAttack3"),
   buttonAttack3 = document.getElementById("button3"),
-  conteo3 = 2, conteo3B = 2;
+  conteo3 = 2,
+  conteo3B = 2;
 
 function menosUno3() {
   if (conteo3 > 0) conteo3--;
@@ -717,7 +783,7 @@ buttonAttack3.addEventListener("click", e => {
 // var buttonAttack3B = document.getElementById("button3B");
 
 // buttonAttack3B.addEventListener("click", e => {
-  
+
 //  attack3Attacking();
 
 // });
@@ -725,16 +791,15 @@ buttonAttack3.addEventListener("click", e => {
 //BOTON 4
 var countAttack4 = document.getElementById("buttonAttack4"),
   buttonAttack4 = document.getElementById("button4"),
-  conteo4 = 10, conteo4B = 10;
+  conteo4 = 10,
+  conteo4B = 10;
 
 function menosUno4() {
   if (conteo4 > 0) conteo4--;
   countAttack4.innerHTML = conteo4;
-
-
 }
 // buttonAttack4.addEventListener("click", e => {
-  
+
 //   menosUno4();
 //   conteo4B--;
 // });
@@ -776,7 +841,30 @@ function countdown2() {
 }
 countdown2();
 
-function gameOver(){
-  if (ninja.life === 0) clearInterval(inicio);
+function gameOver() {
+  if (ninja.life === 0) {
+    clearInterval(inicio);
+      context.font = "60px Avenir";
+      context.fillStyle = "red";
+      context.fillText("Jugador 2 Gana", 270, 220);
+  } else if (seg1 === 0){
+    if (ninja.coins > coinsPlayer2) {
+      clearInterval(inicio);
+      context.font = "60px Avenir";
+      context.fillStyle = "red";
+      context.fillText("Jugador 1 Gana", 270, 220);
+    } else if (ninja.coins === coinsPlayer2) {
+      clearInterval(inicio);
+      context.font = "60px Avenir";
+      context.fillStyle = "red";
+      context.fillText("Empate", 270, 220);
+    } else {
+      clearInterval(inicio);
+      context.font = "60px Avenir";
+      context.fillStyle = "red";
+      context.fillText("Jugador 2 Gana", 270, 220);
+    }
+  }
 }
-start();
+
+
