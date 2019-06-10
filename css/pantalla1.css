@@ -105,13 +105,17 @@ body{
   text-decoration: none;
   position: relative;
   top:  400px;
-  left: 35%;
+  left: 38%;
   font-size: 50px;
 }
 
 .ninja2{
   position: absolute;
   left: 65%;
+}
+.ninja1{
+  position: absolute;
+  left:-3%;
 }
 
 /*
