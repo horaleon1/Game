@@ -858,6 +858,7 @@ function gameOver() {
       context.font = "60px Avenir";
       context.fillStyle = "red";
       context.fillText("Empate", 270, 220);
+      extra();
     } else {
       clearInterval(inicio);
       context.font = "60px Avenir";
@@ -867,4 +868,7 @@ function gameOver() {
   }
 }
 
+function extra(){
+  var extra = document.location.assign('pantalla1.html');
+}
 
