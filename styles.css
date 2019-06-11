@@ -15,9 +15,9 @@ padding: 0;
 }
 
 #canvas{
-/*background: url("./assets/img/fondo1.png")no-repeat;*/
+background: url("./assets/img/fondo1.png")no-repeat;
 background-size: cover;
-height: 500px;
+height: 505px;
 }
 
 .second{
@@ -109,6 +109,110 @@ li{
   color: red;
 }
 
+.countdownGeneral{
+  position: absolute;
+  left:15%;
+  top:25%;
+  color: #F10F4A;
+}
+
+#conteo5{
+  font-size: 70px;
+  animation: conteo5 1s steps(1);
+  animation-fill-mode: forwards;
+  visibility: visible;
+  top:0%;
+  left:30%;
+  text-align: center;
+}
+@keyframes conteo5{
+  0%{
+  visibility: visible;
+  }
+  100%{
+    visibility: hidden;
+  }
+}
+#conteo4{
+  font-size: 90px;
+  animation: conteo4 1s steps(1);
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  top:0%;
+  animation-delay: 1s;
+  left:30%;
+  text-align: center;
+}
+@keyframes conteo4{
+  0%{
+   
+    visibility: visible;
+  }
+  100%{
+    
+    visibility: hidden;
+  }
+}
+#conteo3{
+  font-size: 90px;
+  animation: conteo3 1s steps(1);
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  top:0%;
+  animation-delay: 2s;
+  left:30%;
+  text-align: center;
+}
+@keyframes conteo3{
+  0%{
+    
+    visibility: visible;
+  }
+  100%{
+    
+    visibility: hidden;
+  }
+}
+#conteo2{
+  font-size: 90px;
+  animation: conteo2 1s steps(1);
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  top:0%;
+  animation-delay: 3s;
+  left:30%;
+  text-align: center;
+}
+@keyframes conteo2{
+  0%{
+    
+    visibility: visible;
+  }
+  100%{
+   
+    visibility: hidden;
+  }
+}
+#conteo1{
+  font-size: 90px;
+  animation: conteo1 1s steps(1);
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  top:0%;
+  animation-delay: 4s;
+  left:30%;
+  text-align: center;
+}
+@keyframes conteo1{
+  0%{
+    
+    visibility: visible;
+  }
+  100%{
+  
+    visibility: hidden;
+  }
+}
 /*
 
   ANIMACION COMO SI FUERA SPRITE

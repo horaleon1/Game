@@ -704,12 +704,28 @@ function update() {
   gameOver();
 }
 
-// ON-MOTOR
-// function start() {
-//   inicio = setInterval(update, 1000 / 60);
-// }
+//ON-MOTOR
+function start() {
+  inicio = setInterval(update, 1000 / 60);
+  countdown1();
+  countdown2();
+}
+//cuenta regresiva de 5 sec antes de empezar el juego
+var last5 = 0;
+function sec5(){
+var cronometro = setInterval(() =>{
+  if (last5 >= 0){
+    last5++;
+  }
+  if (last5 === 5){
+    clearInterval(cronometro);
+    start();
+  }
+},1000);
+}
 
-inicio = setInterval(update, 1000 / 60);
+sec5();
+ //inicio = setInterval(update, 1000 / 60);
 
 // Teclas de movimiento
 window.addEventListener("keydown", e => {
@@ -828,7 +844,7 @@ function countdown1() {
     if (auxTimer == 0 || ninja.life === 0) clearInterval(cronometro1);
   }, 1000);
 }
-countdown1();
+//countdown1();
 //Cuenta regresiva 2
 function countdown2() {
   cronometro2 = setInterval(() => {
@@ -840,21 +856,21 @@ function countdown2() {
     if (auxTimer == 0 || ninja.life === 0) clearInterval(cronometro2);
   }, 1000);
 }
-countdown2();
+//countdown2();
 
 function gameOver() {
   if (ninja.life === 0) {
-    clearInterval(inicio);
+    //clearInterval(inicio);
       player2Wins();
   } else if (seg1 === 0){
     if (ninja.coins > coinsPlayer2) {
-      clearInterval(inicio);
+      //clearInterval(inicio);
       player1Wins();
     } else if (ninja.coins === coinsPlayer2) {
-      clearInterval(inicio);
+      //clearInterval(inicio);
       draw();
     } else {
-      clearInterval(inicio);
+      //clearInterval(inicio);
       player2Wins();
     }
   }
