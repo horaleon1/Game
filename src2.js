@@ -710,6 +710,7 @@ function update() {
 // }
 
 inicio = setInterval(update, 1000 / 60);
+
 // Teclas de movimiento
 window.addEventListener("keydown", e => {
   if (e.keyCode === 39) ninja.moveRight();

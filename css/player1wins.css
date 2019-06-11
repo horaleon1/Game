@@ -28,8 +28,8 @@ body{
 }
 h1{
   position: absolute;
-  top:25%;
-  left: 50%;
+  top:20%;
+  left: 45%;
   font-size: 85px;
   color: orange;
 }
@@ -39,14 +39,17 @@ h1{
   width: 600px;
   position: absolute;
   top:20%;
-  left: 5%;
+  left: 5%;transition: all .3s ease-in-out;
+}
+#imagen1:hover{
+transform: scale(1.2);
 }
 .circulo{
   position: absolute;
   height: 100px;
   width: 300px;
   top:67%;
-  left:60%;
+  left:40%;
   background: yellow;
   border-radius: 50px;
   transition: all .3s ease-in-out;
@@ -64,4 +67,26 @@ h1{
 .circulo:hover{
   transform: scale(1.3);
 }
-
+.circulo2{
+  position: absolute;
+  height: 100px;
+  width: 300px;
+  top:67%;
+  left:70%;
+  background: yellow;
+  border-radius: 50px;
+  transition: all .3s ease-in-out;
+}
+#unico2{
+  position: absolute;
+  font-size: 35px;
+  font-family: 'Indie FLower', cursive;
+  color: #E7285A;
+  text-decoration: none;
+  left: 17%;
+  top: 22%;
+  font-weight: 700;
+}
+.circulo2:hover{
+  transform: scale(1.3);
+}
