@@ -16,6 +16,7 @@ var canvas = document.getElementById("canvas"),
   arrayCoins3 = [],
   arrayLifes1 = [],
   arrayLifes2 = [],
+  arrayNinjaAttack = [],
   currentFrame = 0;
 
 canvas.width = window.innerWidth;
@@ -153,6 +154,76 @@ class Ninja {
     );
   }
 }
+class AttackNinja{
+  constructor(x,y,w,h){
+   this.x = x;
+   this.y = y;
+   this.w = w;
+   this.h = h;
+
+   this.img = new Image();
+   this.img.src = "./assets/img/Gem-2.png"
+   this.img.onload = this.draw();
+  }
+  draw(){
+    context.drawImage(this.img, this.x, this.y, this.w, this.h);
+  }
+}
+//funciones Generate Attack Ninja
+function generateAttackNinja() {
+  arrayNinjaAttack.forEach(array => array.draw());
+
+  var x = Math.random() * (+800 - +500) + +500,
+    y = Math.random() * (+200 - +150) + +150;
+
+  if (frames % 900 === 0) {
+    if (arrayNinjaAttack.length === 0) arrayNinjaAttack.push(new AttackNinja(x, y, 45, 45));
+  }
+}
+
+//var vidas = document.getElementById("vidas");
+//colision Attack Ninja
+function checkCollisionAttackNinja() {
+  arrayNinjaAttack.forEach((array, i) => {
+    if (ninja.crashWith(array)) {
+      arrayNinjaAttack.splice(i, 1);
+      blockPlayer2();
+    } 
+  });
+}
+var countBlock = 0, countCongelado = "";
+var counthtml = document.getElementById("conteoCongelado");
+
+function blockPlayer2(){
+  context.font = "60px Avenir";
+  context.fillStyle = "Blue";
+  context.fillText("Jugador 2 Congelado por 5 segundos", 270, 220);
+  //Desactivar botones 
+  conteo1B = -1;
+  conteo1 = conteo1 + 1;
+
+  var cronometro = setInterval(() =>{
+  if(countBlock >= 0) {
+    countBlock++;
+    countCongelado = countBlock;
+    counthtml.innerHTML = countCongelado;
+    
+  }
+  if (countBlock >= 6) {
+    clearInterval(cronometro);
+
+    conteo1B = conteo1;
+    
+    if (clearInterval){
+    countBlock = 0;
+    countCongelado = countBlock;
+    counthtml.innerHTML = countCongelado;
+    }
+    
+  }
+  },1000);
+}
+
 //Ataque 1 (Cohete) Jugador 2
 class Attack1 {
   constructor(x, y, w, h, mx, my, mw, mh) {
@@ -574,7 +645,7 @@ function checkClick3(evento, i) {
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
 }
-//Vidas 1
+//Vidas 1 
 class Life1 {
   constructor(x, y, w, h) {
     this.x = x;
@@ -702,8 +773,11 @@ function update() {
   //attack3B
   attack3Attacking();
   gameOver();
-}
 
+ generateAttackNinja();
+ checkCollisionAttackNinja();
+ 
+}
 //ON-MOTOR
 function start() {
   inicio = setInterval(update, 1000 / 60);
@@ -735,9 +809,9 @@ window.addEventListener("keydown", e => {
 
   if (e.keyCode === 38) ninja.moveJump();
 
-  if(gameOver && e.keyCode === 32) {
-    location.reload();
-  }
+  // if(gameOver && e.keyCode === 32) {
+  //   location.reload();
+  //}
 
   // if (e.keyCode === 40) ninja.moveDown();
 });
