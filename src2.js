@@ -847,28 +847,34 @@ function gameOver() {
       context.font = "60px Avenir";
       context.fillStyle = "red";
       context.fillText("Jugador 2 Gana", 270, 220);
+      player2Wins();
   } else if (seg1 === 0){
     if (ninja.coins > coinsPlayer2) {
       clearInterval(inicio);
-      context.font = "60px Avenir";
-      context.fillStyle = "red";
-      context.fillText("Jugador 1 Gana", 270, 220);
+      player1Wins();
     } else if (ninja.coins === coinsPlayer2) {
       clearInterval(inicio);
       context.font = "60px Avenir";
       context.fillStyle = "red";
       context.fillText("Empate", 270, 220);
-      extra();
+      draw();
     } else {
       clearInterval(inicio);
       context.font = "60px Avenir";
       context.fillStyle = "red";
       context.fillText("Jugador 2 Gana", 270, 220);
+      player2Wins();
     }
   }
 }
 
-function extra(){
-  var extra = document.location.assign('pantalla1.html');
+function player1Wins(){
+  document.location.assign('player1wins.html');
+}
+function player2Wins(){
+  document.location.assign('player2wins.html');
+}
+function draw(){
+  document.location.assign('draw.html');
 }
 

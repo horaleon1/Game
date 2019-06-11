@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+body{
+  font-family: 'Indie FLower', cursive;
+  margin: 0px;
+  padding: 0px;
+  background: #2A75AC;
+}
+.confetti{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: url("/Users/Horace/Documents/Juego/assets/img/confetti.png");
+  top: 0;
+  left: 0;
+  animation: animacion 15s linear infinite;
+}
+@keyframes animacion{
+  0%
+ { 
+  background-position: 0 0;
+ }
+  
+  100%
+  {
+    background-position: 0 3830px;
+  }
+}
+h1{
+  position: absolute;
+  top:25%;
+  left: 50%;
+  font-size: 85px;
+  color: orange;
+}
+#imagen1{
+  background: url("/Users/Horace/Documents/Juego/assets/img/face.png") no-repeat;
+  height: 600px;
+  width: 600px;
+  position: absolute;
+  top:20%;
+  left: 5%;
+}
+.circulo{
+  position: absolute;
+  height: 100px;
+  width: 300px;
+  top:67%;
+  left:60%;
+  background: yellow;
+  border-radius: 50px;
+  transition: all .3s ease-in-out;
+}
+#unico{
+  position: absolute;
+  font-size: 35px;
+  font-family: 'Indie FLower', cursive;
+  color: #E7285A;
+  text-decoration: none;
+  left: 15%;
+  top: 22%;
+  font-weight: 700;
+}
+.circulo:hover{
+  transform: scale(1.3);
+}
