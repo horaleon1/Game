@@ -844,9 +844,6 @@ countdown2();
 function gameOver() {
   if (ninja.life === 0) {
     clearInterval(inicio);
-      context.font = "60px Avenir";
-      context.fillStyle = "red";
-      context.fillText("Jugador 2 Gana", 270, 220);
       player2Wins();
   } else if (seg1 === 0){
     if (ninja.coins > coinsPlayer2) {
@@ -854,15 +851,9 @@ function gameOver() {
       player1Wins();
     } else if (ninja.coins === coinsPlayer2) {
       clearInterval(inicio);
-      context.font = "60px Avenir";
-      context.fillStyle = "red";
-      context.fillText("Empate", 270, 220);
       draw();
     } else {
       clearInterval(inicio);
-      context.font = "60px Avenir";
-      context.fillStyle = "red";
-      context.fillText("Jugador 2 Gana", 270, 220);
       player2Wins();
     }
   }
