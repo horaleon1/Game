@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Shoot that Ninja</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="./css/src2.css" />
+    <link rel="stylesheet" href="./css/src2.css" >
   </head>
 
   <body>
@@ -40,7 +36,7 @@
               id="vidaCara"
             />
           </li>
-          <li><span id="timer1">00</span></li>
+          <li>Tiempo <span id="timer1">00</span></li>
         </ul>
       </div>
 
@@ -49,34 +45,51 @@
       <div class="second">
         <div id="containerPlayer2">
           <ul id="player2">
-            <li>Puntos <span id="puntosCoin2">0</span></li>
-            <li>Player 2</li>
-            <li>Timer <span id="timer2">00</span></li>
+            <li>Jugador 2</li>
+            <li id = "puntos2">Puntos <span id="puntosCoin2">0</span></li>
+            <li id = "puntos3">Tiempo <span id="timer2">00</span></li>
           </ul>
         </div>
 
         <div id="containerSecond">
-          <div class="ataque1"><span id="buttonAttack1">5</span></div>
-          <div class="divButton1">
-            <button id="button1">Ataque 1 estrella</button>
+
+          <div class="ataque1">
+              <h4 class = "secondTexto1">Ataques <br> Restantes</h4>
+              <span id="buttonAttack1">5</span>
+              <button id="button1"> Ataque 1</button>
+              <img src="./assets/img/ROCKET.png" alt="" id = "secondImg1">
           </div>
 
-          <div class="ataque2"><span id="buttonAttack2">3</span></div>
-          <div class="divButton2">
-            <button id="button2">Ataque 2 Ninja Enemigo</button>
+          <div class="ataque2">
+              <h4 class = "secondTexto2">Ataques <br> Restantes</h4>
+            <span id="buttonAttack2">3</span>
+            <button id="button2">Ataque 2</button>
+            <img src="./assets/img/shuriken.png" alt="" id = "secondImg2">
           </div>
 
-          <div class="ataque3"><span id="buttonAttack3">2</span></div>
-          <div class="divButton3">
-            <button id="button3">Activacion</button>
+          <div class="ataque3">
+            <h4 class = "secondTexto3">Ataques <br> Restantes</h4>
+            <span id="buttonAttack3">2</span>
+            <button id="button3">Ataque 3</button>
+            <img src="./assets/img/fire.png" alt="" id = "secondImg3">
           </div>
 
-          <div class="conteoCongeladoDiv">
+            <div>
+            <h3 class="secondTexto4">Congelamiento</h3>
+            <h4 class="secondTexto5">Segundos <br>Restantes</h4>
             <span id="conteoCongelado">0</span>
+            </div>
+            
+            <div>
+              <img src="./assets/img/whiteNinja.png" alt="" class = "whiteNinja">
+            </div>
+
           </div>
+
         </div>
+
       </div>
-    </div>
+   
   </body>
   <script src="./JS/src2.js"></script>
 </html>

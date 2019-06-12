@@ -20,7 +20,8 @@ var canvas = document.getElementById("canvas"),
   currentFrame = 0,
   disableButtons = false;
 
-canvas.width = window.innerWidth;
+//canvas.width = window.innerWidth;
+canvas.width = 1480;
 canvas.height = 500;
 
 //Clases
@@ -97,18 +98,20 @@ class Ninja {
     this.velY = 0;
 
     this.img = new Image();
-    this.img.src = "./assets/img/ninjaS.png";
+    this.img.src = "./assets/img/runSB.png";
+
     this.img.onload = this.draw();
 
     this.life = 3;
     this.coins = 0;
 
     this.isJumping = false;
+    this.runningLeft = false;
   }
   draw() {
     context.drawImage(
       this.img,
-      currentFrame * (1000 / 10),
+      currentFrame * (500 / 10),
       this.my,
       this.mw,
       this.mh,
@@ -126,10 +129,15 @@ class Ninja {
 
   moveRight() {
     if (this.x < window.innerWidth && this.x < 1350) this.x += 20;
+    this.img.src = "./assets/img/runSB.png"
   }
 
   moveLeft() {
-    if (this.x > -1) this.x -= 20;
+    
+    if (this.x > -1) {
+      this.x -= 20;
+      this.img.src = "./assets/img/runLeftSA.png";
+    }
   }
 
   moveJump() {
@@ -139,6 +147,7 @@ class Ninja {
       this.y -= 200;
 
       this.isJumping = false;
+      this.img.src = "./assets/img/runSB.png"
     }
   }
 
@@ -719,7 +728,7 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-  ninja = new Ninja(200, 355, 1000 / 10, 60, 0, 0, 1000 / 10, 60),
+  ninja = new Ninja(200, 355, 500 / 10, 80, 0, 0, 500 / 10, 80),
   cloud1 = new Cloud(20, 20, 300, 200);
 cloud2 = new Cloud2(1400, 20, 250, 200);
 //SONIDOS
