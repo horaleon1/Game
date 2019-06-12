@@ -10,7 +10,7 @@ body{
   height: 100%;
   width: 100%;
   position: absolute;
-  background: url("/Users/Horace/Documents/Juego/assets/img/confetti.png");
+  background: url("../assets/img/confetti.png");
   top: 0;
   left: 0;
   animation: animacion 15s linear infinite;
@@ -34,7 +34,7 @@ h1{
   color: orange;
 }
 #imagen1{
-  background: url("/Users/Horace/Documents/Juego/assets/img/face.png") no-repeat;
+  background: url("../assets/img/face.png") no-repeat;
   height: 600px;
   width: 600px;
   position: absolute;

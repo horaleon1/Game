@@ -7,6 +7,7 @@ body{
   font-family: 'Merienda', cursive;
   background: #06406B;
   overflow: hidden;
+  height: 100%;
 }
 
 .star{
@@ -129,7 +130,12 @@ body{
 }
 
 .lista2 li{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+.lista2{
+  position: absolute;
+  top:-5%;
+  left:30%;
 }
 
 .ninja2{
@@ -142,7 +148,6 @@ body{
 }
 
 #abrirInstrucciones:target{
- /*opacity: 1;*/
  display: block;
 }
 .instruccionesX{
@@ -155,15 +160,12 @@ body{
 }
 .instruccionesContenido{
   box-sizing: border-box;
-  /*background-color: rgba(0,0,0, .5);*/
   width:100%;
   height: 80%;
   position: absolute;
   top:0;
   left: 0;
   z-index: 10;
-  /*opacity: 0;*/
-  /*visibility: hidden;*/
   display: none;
 }
 .instruccionesParrafo{
@@ -211,17 +213,3 @@ animation: flotando 7s ease-in-out infinite;
   }
 }
 
-/*
- .ninja{
-  height:600px;
-  width: 1200px;
-  position: absolute;
-  background: url(/Users/Horace/Documents/Juego/assets/img/Ninja-Run.png);
-  animation: ninja 5s steps(10) 0.25;
-  left: 10px;
-  transform: rotate(180deg);
-}
-@keyframes ninja{
- from {background-position: 0px;}
- to { background-position: 1200px;}
-} */

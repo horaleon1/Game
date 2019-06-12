@@ -6,7 +6,7 @@ var cronometro = setInterval(()=>{
   
   if(time === 80) {
     clearInterval(cronometro);
-    document.location.assign('pantalla1.html');
+    document.location.assign('index.html');
 }
  },1000);
 }
