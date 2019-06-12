@@ -9,7 +9,7 @@ padding: 0;
 
 #container{
 width: 100%;
-cursor: url("./assets/img/ninja star move cursor.cur"), auto;
+/*cursor: url("./assets/img/ninja star move cursor.cur"), auto;*/
 margin: 0;
 padding: 0;
 }

@@ -17,7 +17,8 @@ var canvas = document.getElementById("canvas"),
   arrayLifes1 = [],
   arrayLifes2 = [],
   arrayNinjaAttack = [],
-  currentFrame = 0;
+  currentFrame = 0,
+  disableButtons = false;
 
 canvas.width = window.innerWidth;
 canvas.height = 500;
@@ -180,7 +181,7 @@ function generateAttackNinja() {
     if (arrayNinjaAttack.length === 0) arrayNinjaAttack.push(new AttackNinja(x, y, 45, 45));
   }
 }
-
+//////////
 //var vidas = document.getElementById("vidas");
 //colision Attack Ninja
 function checkCollisionAttackNinja() {
@@ -195,32 +196,22 @@ var countBlock = 0, countCongelado = "";
 var counthtml = document.getElementById("conteoCongelado");
 
 function blockPlayer2(){
-  context.font = "60px Avenir";
-  context.fillStyle = "Blue";
-  context.fillText("Jugador 2 Congelado por 5 segundos", 270, 220);
-  //Desactivar botones 
-  conteo1B = -1;
-  conteo1 = conteo1 + 1;
-
+  disableButtons = true;
   var cronometro = setInterval(() =>{
   if(countBlock >= 0) {
     countBlock++;
     countCongelado = countBlock;
     counthtml.innerHTML = countCongelado;
-    
   }
   if (countBlock >= 6) {
     clearInterval(cronometro);
-
-    conteo1B = conteo1;
-    
-    if (clearInterval){
+    disableButtons = false;
+  if (clearInterval){
     countBlock = 0;
     countCongelado = countBlock;
     counthtml.innerHTML = countCongelado;
     }
-    
-  }
+   }
   },1000);
 }
 
@@ -567,6 +558,7 @@ function checkClick2(evento, i) {
     if (array.clickable(evento)) {
       arrayCoins2.splice(i, 1);
       coinsPlayer2++;
+      console.log(coinsPlayer2);
     }
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
@@ -641,6 +633,7 @@ function checkClick3(evento, i) {
     if (array.clickable(evento)) {
       arrayCoins3.splice(i, 1);
       coinsPlayer2++;
+      console.log(arrayCoins3);
     }
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
@@ -824,11 +817,12 @@ var countAttack1 = document.getElementById("buttonAttack1"),
   conteo1B = 5;
 
 function menosUno() {
-  if (conteo1 > 0) conteo1--;
+  if (conteo1 > 0 && disableButtons === false) conteo1--;
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
-  if (conteo1B > 0) {
+
+  if (conteo1B > 0 && disableButtons === false) {
     generateAttack1();
     conteo1B--;
   }
@@ -841,11 +835,11 @@ var countAttack2 = document.getElementById("buttonAttack2"),
   conteo2B = 3;
 
 function menosUno2() {
-  if (conteo2 > 0) conteo2--;
+  if (conteo2 > 0 && disableButtons === false) conteo2--;
   countAttack2.innerHTML = conteo2;
 }
 buttonAttack2.addEventListener("click", e => {
-  if (conteo2B > 0) {
+  if (conteo2B > 0 && disableButtons === false) {
     generateAttack2();
     menosUno2();
     conteo2B--;
@@ -858,12 +852,12 @@ var countAttack3 = document.getElementById("buttonAttack3"),
   conteo3B = 2;
 
 function menosUno3() {
-  if (conteo3 > 0) conteo3--;
+  if (conteo3 > 0 && disableButtons === false) conteo3--;
   countAttack3.innerHTML = conteo3;
 }
 
 buttonAttack3.addEventListener("click", e => {
-  if (conteo3B > 0) {
+  if (conteo3B > 0 && disableButtons === false) {
     generateAttack3();
     menosUno3();
     conteo3B--;

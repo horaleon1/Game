@@ -143,7 +143,7 @@ body{
 
 #abrirInstrucciones:target{
  /*opacity: 1;*/
- visibility: visible;
+ display: block;
 }
 .instruccionesX{
   color: black;
@@ -163,7 +163,8 @@ body{
   left: 0;
   z-index: 10;
   /*opacity: 0;*/
-  visibility: hidden;
+  /*visibility: hidden;*/
+  display: none;
 }
 .instruccionesParrafo{
   width: 75%;
