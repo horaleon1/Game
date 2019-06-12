@@ -389,13 +389,13 @@ class Star {
     this.mh = mh;
 
     this.img = new Image();
-    this.img.src = "./assets/img/bombS.png";
+    this.img.src = "./assets/img/star-2.png";
     this.img.onload = this.draw();
   }
   draw() {
     context.drawImage(
       this.img,
-      currentFrame * (700 / 100),
+      this.mx, 
       this.my,
       this.mw,
       this.mh,
@@ -408,7 +408,7 @@ class Star {
 }
 // funcion genera estrellas
 function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y, 700 / 100, 120, 0, 0, 700 / 10, 120);
+  var star1 = new Star(ninja.x, ninja.y,120, 120, 0, 0, 120, 120);
   star1.draw();
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
@@ -778,20 +778,20 @@ function start() {
   countdown2();
 }
 //cuenta regresiva de 5 sec antes de empezar el juego
-var last5 = 0;
-function sec5(){
-var cronometro = setInterval(() =>{
-  if (last5 >= 0){
-    last5++;
-  }
-  if (last5 === 5){
-    clearInterval(cronometro);
-    start();
-  }
-},1000);
-}
+// var last5 = 0;
+// function sec5(){
+// var cronometro = setInterval(() =>{
+//   if (last5 >= 0){
+//     last5++;
+//   }
+//   if (last5 === 5){
+//     clearInterval(cronometro);
+//     start();
+//   }
+// },1000);
+// }
 
-sec5();
+// sec5();
  //inicio = setInterval(update, 1000 / 60);
 
 // Teclas de movimiento
@@ -954,3 +954,4 @@ function draw(){
   document.location.assign('draw.html');
 }
 
+start();

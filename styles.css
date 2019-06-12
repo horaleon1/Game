@@ -10,14 +10,14 @@ padding: 0;
 #container{
 width: 100%;
 /*cursor: url("./assets/img/ninja star move cursor.cur"), auto;*/
+/*background: url("./assets/img/fondo1.png")no-repeat;*/
+/*height: 505px;*/
 margin: 0;
 padding: 0;
+/*background-size: cover;*/
 }
 
 #canvas{
-background: url("./assets/img/fondo1.png")no-repeat;
-background-size: cover;
-height: 505px;
 }
 
 .second{
@@ -63,7 +63,6 @@ width:50px;
   font-size: 40px;
   width: 100%;
   margin: 0 auto;
-  
 }
 
 #player1{
@@ -108,7 +107,7 @@ li{
 #vidas{
   color: red;
 }
-
+/*
 .countdownGeneral{
   position: absolute;
   left:15%;
@@ -124,13 +123,16 @@ li{
   top:0%;
   left:30%;
   text-align: center;
+  z-index: 0;
 }
 @keyframes conteo5{
   0%{
   visibility: visible;
+  z-index: 0;
   }
   100%{
-    visibility: hidden;
+  visibility: hidden;
+  z-index: -1;
   }
 }
 #conteo4{
@@ -213,13 +215,12 @@ li{
     visibility: hidden;
   }
 }
-.conteoCongelado{
+#conteoCongelado{
   position: absolute;
-  left: 70%;
-  top: 5%;
   color: #F10F4A;
+  font-size: 30px;
 }
-/*
+
 
   ANIMACION COMO SI FUERA SPRITE
 
