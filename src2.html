@@ -1,42 +1,35 @@
 <!DOCTYPE html>
+<!--Just WoodVibes-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Shoot that Ninja</title>
-    <link rel="stylesheet" href="./css/src2.css" >
+    <link rel="stylesheet" href="./css/src2.css" />
   </head>
 
   <body>
     <div id="container">
-      <!--
-    <div class = "countdownGeneral">
-          <ul>
-            <li id = "conteo5"> ¿Están Listos?</li>
-            <li id = "conteo4"> 3</li>
-            <li id = "conteo3"> 2</li>
-            <li id = "conteo2"> 1</li>
-            <li id = "conteo1"> Vamos!</li>
-          </ul>
-        </div>
-   -->
-
       <div id="containerPlayer1">
         <ul id="player1">
-          <li>
-            Jugador 1 <span id="coinAnimation">Puntos</span>
-            <span id="puntosCoin">00</span>
+          
+          <li id = "textPlayer1">Jugador</li>
+          <li id = "textPlayer1B">1</li>
+          <li class = "firstVidas">
+            <img src="./assets/img/face.png" alt="Icono de una Cara de Ninja " class = "lifesImg"/>
+            <span id="vidas">3</span>
           </li>
-          <li>Vidas <span id="vidas">3</span></li>
+
           <li>
-            <img
-              src="./assets/img/face.png"
-              alt="Gema Roja Representa una vida del jugador"
-              id="vidaCara"
-            />
+            <img src="./assets/img/Coin.png" alt="Icono de una Moneda Amarilla" id="moneda1" />
+            <span id="puntosCoin">0</span>
           </li>
-          <li>Tiempo <span id="timer1">00</span></li>
+
+          <li>
+            <img src="./assets/img/clock.png" alt=" Icono de un Cronometro" id="cronometroImg1" />
+            <span id="timer1">00</span>
+          </li>
         </ul>
       </div>
 
@@ -45,51 +38,61 @@
       <div class="second">
         <div id="containerPlayer2">
           <ul id="player2">
-            <li>Jugador 2</li>
-            <li id = "puntos2">Puntos <span id="puntosCoin2">0</span></li>
-            <li id = "puntos3">Tiempo <span id="timer2">00</span></li>
+            <li class="jugador2Text">Jugador 2</li>
+            <li id="puntos2">
+              <img src="./assets/img/Coin.png" alt="Icono de una moneda Amarilla" id="moneda2" />
+              <span id="puntosCoin2">0</span>
+            </li>
+            <li id="puntos3">
+              <img src="./assets/img/clock.png" alt="Icono de un cronometro" id="cronometroImg2" />
+              <span id="timer2">00</span>
+            </li>
           </ul>
         </div>
 
         <div id="containerSecond">
-
           <div class="ataque1">
-              <h4 class = "secondTexto1">Ataques <br> Restantes</h4>
-              <span id="buttonAttack1">5</span>
-              <button id="button1"> Ataque 1</button>
-              <img src="./assets/img/ROCKET.png" alt="" id = "secondImg1">
+            <h4 class="secondTexto1">
+              Ataques <br />
+              Restantes
+            </h4>
+            <span id="buttonAttack1">5</span>
+            <button id="button1">Ataque 1</button>
+            <img src="./assets/img/ROCKET.png" alt="Icono de un proyectil" id="secondImg1" />
           </div>
 
           <div class="ataque2">
-              <h4 class = "secondTexto2">Ataques <br> Restantes</h4>
-            <span id="buttonAttack2">3</span>
+            <h4 class="secondTexto2">
+              Ataques <br />
+              Restantes
+            </h4>
+            <span id="buttonAttack2">2</span>
             <button id="button2">Ataque 2</button>
-            <img src="./assets/img/shuriken.png" alt="" id = "secondImg2">
+            <img src="./assets/img/shuriken.png" alt="Icono de un Shruriken o arma de ninja en forma de estrella" id="secondImg2" />
           </div>
 
           <div class="ataque3">
-            <h4 class = "secondTexto3">Ataques <br> Restantes</h4>
-            <span id="buttonAttack3">2</span>
+            <h4 class="secondTexto3">
+              Ataques <br />
+              Restantes
+            </h4>
+            <span id="buttonAttack3">3</span>
             <button id="button3">Ataque 3</button>
-            <img src="./assets/img/fire.png" alt="" id = "secondImg3">
+            <img src="./assets/img/fire.png" alt=" Icono de unas flamas de fuego" id="secondImg3" />
           </div>
 
-            <div>
-            <h3 class="secondTexto4">Congelamiento</h3>
-            <h4 class="secondTexto5">Segundos <br>Restantes</h4>
+          <div>
+            <h4 class="secondTexto5">Segundos <br />Restantes</h4>
             <span id="conteoCongelado">0</span>
-            </div>
-            
-            <div>
-              <img src="./assets/img/whiteNinja.png" alt="" class = "whiteNinja">
-            </div>
-
+            <img src="./assets/img/ice.png" alt="Icono de un Iceberg" id="secondImg4" />
           </div>
 
+          <div>
+            <img src="./assets/img/whiteNinja.png" alt="Imagen de un ninja con vestido blanco" class="whiteNinja" />
+          </div>
         </div>
-
       </div>
-   
+    </div>
   </body>
   <script src="./JS/src2.js"></script>
 </html>

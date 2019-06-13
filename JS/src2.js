@@ -106,7 +106,6 @@ class Ninja {
     this.coins = 0;
 
     this.isJumping = false;
-    this.runningLeft = false;
   }
   draw() {
     context.drawImage(
@@ -124,7 +123,6 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
-    //this.x += 2.5;
   }
 
   moveRight() {
@@ -145,7 +143,6 @@ class Ninja {
 
     if (this.y < 500 && this.y > 30 && this.isJumping) {
       this.y -= 200;
-
       this.isJumping = false;
       this.img.src = "./assets/img/runSB.png"
     }
@@ -190,8 +187,8 @@ function generateAttackNinja() {
     if (arrayNinjaAttack.length === 0) arrayNinjaAttack.push(new AttackNinja(x, y, 45, 45));
   }
 }
-//////////
-//var vidas = document.getElementById("vidas");
+
+
 //colision Attack Ninja
 function checkCollisionAttackNinja() {
   arrayNinjaAttack.forEach((array, i) => {
@@ -201,23 +198,23 @@ function checkCollisionAttackNinja() {
     } 
   });
 }
-var countBlock = 0, countCongelado = "";
+var countBlock = 6, countCongelado = "";
 var counthtml = document.getElementById("conteoCongelado");
 
 function blockPlayer2(){
   disableButtons = true;
   var cronometro = setInterval(() =>{
-  if(countBlock >= 0) {
-    countBlock++;
+  if(countBlock <= 6) {
+    countBlock--;
     countCongelado = countBlock;
     counthtml.innerHTML = countCongelado;
   }
-  if (countBlock >= 6) {
+  if (countBlock <= 0) {
     clearInterval(cronometro);
     disableButtons = false;
   if (clearInterval){
-    countBlock = 0;
-    countCongelado = countBlock;
+    countBlock = 6;
+    countCongelado = 0;
     counthtml.innerHTML = countCongelado;
     }
    }
@@ -728,9 +725,9 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-  ninja = new Ninja(200, 355, 500 / 10, 80, 0, 0, 500 / 10, 80),
-  cloud1 = new Cloud(20, 20, 300, 200);
-cloud2 = new Cloud2(1400, 20, 250, 200);
+   ninja = new Ninja(200, 325, 500 / 10, 80, 0, 0, 500 / 10, 80),
+   cloud1 = new Cloud(20, 20, 300, 200);
+   cloud2 = new Cloud2(1400, 20, 250, 200);
 //SONIDOS
 var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
 
@@ -840,8 +837,8 @@ buttonAttack1.addEventListener("click", e => {
 //BOTON 2
 var countAttack2 = document.getElementById("buttonAttack2"),
   buttonAttack2 = document.getElementById("button2"),
-  conteo2 = 3,
-  conteo2B = 3;
+  conteo2 = 2,
+  conteo2B = 2;
 
 function menosUno2() {
   if (conteo2 > 0 && disableButtons === false) conteo2--;
@@ -857,8 +854,8 @@ buttonAttack2.addEventListener("click", e => {
 //BOTON 3
 var countAttack3 = document.getElementById("buttonAttack3"),
   buttonAttack3 = document.getElementById("button3"),
-  conteo3 = 2,
-  conteo3B = 2;
+  conteo3 = 3,
+  conteo3B = 3;
 
 function menosUno3() {
   if (conteo3 > 0 && disableButtons === false) conteo3--;

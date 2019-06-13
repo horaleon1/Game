@@ -1,22 +1,31 @@
+/* Just WoodVines */
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
 body{
 font-family: 'Indie FLower', cursive;
 margin: 0;
 padding: 0;
-
+}
+#textPlayer1{
+  position: absolute;
+  font-size: 42px;
+  left: 10px;
+  color: #E54A09;
+  top: 8px;
+}
+#textPlayer1B{
+  position: absolute;
+  left: 165px;
+  font-size: 42px;
+  top: 8px;
+  color: #E54A09;
 }
 
 #container{
 width: 1490px;
-/*cursor: url("./assets/img/ninja star move cursor.cur"), auto;*/
-/*background: url("./assets/img/fondo1.png")no-repeat;*/
-/*height: 505px;*/
 margin: 0;
 padding: 0;
-/*background-size: cover;*/
 }
-
 .second{
   margin: -10px;
   border-top: 2px solid black;
@@ -25,27 +34,21 @@ padding: 0;
   position: relative;
   width: 1490px;
 }
-
 #containerSecond{
   margin:0;
   padding: 0;
 }
-
 #containerPlayer1{
-  position: absolute;
-  color: orange;
   font-size: 40px;
-  width: 100%;
-  margin: 0 auto;
-  position: absolute;
-  top:50px;
+  margin: 0 auto; 
+  display: inline;
+  float: left;
 }
-
 #player1{
   list-style-type: none;
-  float: left;
   margin: 5px;
   margin-right: 70px;
+  position: absolute;
 }
 #puntos2{
   position: absolute;
@@ -53,19 +56,15 @@ padding: 0;
 }
 #puntos3{
   position: absolute;
-  left:29%;
+  left:35.5%;
+  top: -5px;
 }
-
 div ul li{
   display: inline;
   position: absolute;
   top: 10px;
 }
 
-#containerPlayer2{
-  color:#E54A09;
-  font-size: 30px;
-}
 #vidaCara{
   height: 40px;
   width: 40px;
@@ -86,7 +85,6 @@ div ul li{
   color: red;
 }
 
-
 #button1{
   position: absolute;
   left: 203px;
@@ -95,13 +93,15 @@ div ul li{
   width: 70px;
   border-radius: 5px;
   border-color:  #E54A09;
+  font-family: 'Indie FLower', cursive;
+  font-size: 14.5px;
 }
 /* Cantidad de ataques */
 #buttonAttack1{
   position: relative;
   left: 200%;
   font-size: 30px;
-  top: 35px;
+  top: 55px;
   left:330px;
   font-size: 40px;
   color: red;
@@ -119,8 +119,6 @@ div ul li{
   left: 210px;
   top:50px;
 }
-
-
 #button2{
   position: absolute;
   left: 410px;
@@ -129,13 +127,15 @@ div ul li{
   width: 70px;
   border-radius: 5px;
   border-color:  #E54A09;
+  font-family: 'Indie FLower', cursive;
+  font-size: 14.5px;
 }
 /* Cantidad de ataques */
 #buttonAttack2{
   position: relative;
   left: 200%;
   font-size: 30px;
-  top:-30px;
+  top:-13px;
   left:535px;
   font-size: 45px;
   color: red;
@@ -153,22 +153,23 @@ div ul li{
   left: 415px;
   top:50px;
 }
-
 #button3{
   position: absolute;
-  left: 610px;
+  left: 615px;
   top:140px;
   height: 50px;
   width: 70px;
   border-radius: 5px;
   border-color:  #E54A09;
+  font-family: 'Indie FLower', cursive;
+  font-size: 14.5px;
 }
 /* Cantidad de ataques */
 #buttonAttack3{
   position: relative;
   left: 200%;
   font-size: 30px;
-  top:-95px;
+  top: -80px;
   left:735px;
   font-size: 45px;
   color: red;
@@ -188,29 +189,122 @@ div ul li{
 }
 #conteoCongelado{
   position: absolute;
-  font-size: 50px;
-  top: 53px;
+  font-size: 55px;
+  top: 60px;
   left:840px;
   color:blue;
 }
-.secondTexto4{
-  position: absolute;
-  color:blue;
-  top:-9px;
-  left: 830px;
-  font-size: 25px;
-}
 .secondTexto5{
 position: absolute;
-font-size: 18px;
-top:40px;
-left:914px;
+font-size:18px;
+top:115px;
+left:814px;
 }
-
+#secondImg4{
+  height: 90px;
+  width: 100px;
+  position: absolute;
+  left:803px;
+  top:-5px;
+}
 .whiteNinja{
   width: 150px;
   height: 130px;
   position: absolute;
   top: 60px;
   left: 20px;
+  transform: translateX(0px);
+  animation: ninja 9s ease-in-out infinite;
+}
+@keyframes ninja{
+  0%{
+    transform: translateX(0px);
+  }
+  50%{
+    transform: translateX(20px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+#cronometroImg2{
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  left:-105px;
+  top: 15px;
+}
+#timer2{
+  font-size: 45px;
+  position: absolute;
+  left:-8px;
+  color: #E54A09;
+}
+#moneda2{
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  left: -13px;
+  top:-4px;
+}
+#puntosCoin2{
+  position: absolute;
+  left: 100px;
+  font-size: 45px;
+  top: -15px;
+  color: #E54A09;
+}
+.jugador2Text{
+  font-size: 35px;
+  color: green;
+  position: absolute;
+  left: 23px;
+}
+.firstLifes{
+position: absolute;
+}
+#cronometroImg1{
+ height: 38px;
+ width: 38px;
+ position: absolute;
+ left: 400px;
+}
+#timer1{
+position: absolute;
+left: 439px;
+color: #E54A09;
+font-size:55px;
+}
+.firstVidas{
+  position: absolute;
+  top: 52px;
+  left: 200px;
+}
+#vidas{
+  position: absolute;
+  left: 80px;
+  top: -45px;
+  font-size: 55px;
+  left: 489px;
+  color: #E54A09;
+}
+.lifesImg{
+  height: 52px;
+  width: 52px;
+  position: absolute;
+  left: 430px;
+  top: -50px;
+}
+#moneda1{
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  left: 204px;
+}
+#puntosCoin{
+  position: absolute;
+  left: 250px;
+  font-size: 55px;
+  top: -5px;
+  color: #E54A09;
 }
