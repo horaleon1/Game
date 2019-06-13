@@ -59,7 +59,7 @@ class Cloud {
   draw() {
     context.drawImage(this.img, this.x--, this.y, this.w, this.h);
     if (this.x > 0) {
-      this.x += 2;
+      this.x += 1.5;
     }
   }
 }
@@ -127,11 +127,10 @@ class Ninja {
 
   moveRight() {
     if (this.x < window.innerWidth && this.x < 1350) this.x += 20;
-    this.img.src = "./assets/img/runSB.png"
+    this.img.src = "./assets/img/runSB.png";
   }
 
   moveLeft() {
-    
     if (this.x > -1) {
       this.x -= 20;
       this.img.src = "./assets/img/runLeftSA.png";
@@ -145,13 +144,9 @@ class Ninja {
       this.y -= 200;
       soundJump.play();
       this.isJumping = false;
-      this.img.src = "./assets/img/runSB.png"
+      this.img.src = "./assets/img/runSB.png";
     }
   }
-
-  // moveDown() {
-  //   if (this.y > 0 && this.y + this.h <= 500) this.y += 30;
-  // }
 
   crashWith(ninja) {
     return (
@@ -162,18 +157,19 @@ class Ninja {
     );
   }
 }
-class AttackNinja{
-  constructor(x,y,w,h){
-   this.x = x;
-   this.y = y;
-   this.w = w;
-   this.h = h;
+//ataque deljugador1 al jugador 2 (congela los ataques por 5 segundos)
+class AttackNinja {
+  constructor(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
 
-   this.img = new Image();
-   this.img.src = "./assets/img/Gem-2.png"
-   this.img.onload = this.draw();
+    this.img = new Image();
+    this.img.src = "./assets/img/Gem-2.png";
+    this.img.onload = this.draw();
   }
-  draw(){
+  draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
 }
@@ -185,10 +181,10 @@ function generateAttackNinja() {
     y = Math.random() * (+200 - +150) + +150;
 
   if (frames % 900 === 0) {
-    if (arrayNinjaAttack.length === 0) arrayNinjaAttack.push(new AttackNinja(x, y, 45, 45));
+    if (arrayNinjaAttack.length === 0)
+      arrayNinjaAttack.push(new AttackNinja(x, y, 45, 45));
   }
 }
-
 
 //colision Attack Ninja
 function checkCollisionAttackNinja() {
@@ -197,30 +193,31 @@ function checkCollisionAttackNinja() {
       arrayNinjaAttack.splice(i, 1);
       blockPlayer2();
       soundGreenGem.play();
-    } 
+    }
   });
 }
-var countBlock = 6, countCongelado = "";
+var countBlock = 6,
+  countCongelado = "";
 var counthtml = document.getElementById("conteoCongelado");
 
-function blockPlayer2(){
+function blockPlayer2() {
   disableButtons = true;
-  var cronometro = setInterval(() =>{
-  if(countBlock <= 6) {
-    countBlock--;
-    countCongelado = countBlock;
-    counthtml.innerHTML = countCongelado;
-  }
-  if (countBlock <= 0) {
-    clearInterval(cronometro);
-    disableButtons = false;
-  if (clearInterval){
-    countBlock = 6;
-    countCongelado = 0;
-    counthtml.innerHTML = countCongelado;
+  var cronometro = setInterval(() => {
+    if (countBlock <= 6) {
+      countBlock--;
+      countCongelado = countBlock;
+      counthtml.innerHTML = countCongelado;
     }
-   }
-  },1000);
+    if (countBlock <= 0) {
+      clearInterval(cronometro);
+      disableButtons = false;
+      if (clearInterval) {
+        countBlock = 6;
+        countCongelado = 0;
+        counthtml.innerHTML = countCongelado;
+      }
+    }
+  }, 1000);
 }
 
 //Ataque 1 (Cohete) Jugador 2
@@ -273,10 +270,10 @@ function checkCollision1() {
     if (ninja.crashWith(array)) {
       arrayattack1.splice(i, 1);
       ninja.life--;
-      generateStar();
+      //generateStar();
       sound1.play();
     }
-    if (ninja.life >= 0) vidasId.innerHTML = ninja.life; soundLife.play();
+    if (ninja.life >= 0) vidasId.innerHTML = ninja.life;
   });
 }
 // Ataque 2 Shuriken(Ninja Star) Jugador 2
@@ -348,7 +345,7 @@ class Attack3 {
   }
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
-    
+
     if (this.y === 455) this.x += 5;
     if (this.x > 1400) this.y -= 5;
   }
@@ -404,7 +401,7 @@ class Star {
   draw() {
     context.drawImage(
       this.img,
-      this.mx, 
+      this.mx,
       this.my,
       this.mw,
       this.mh,
@@ -417,7 +414,7 @@ class Star {
 }
 // funcion genera estrellas
 function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y,120, 120, 0, 0, 120, 120);
+  var star1 = new Star(ninja.x, ninja.y, 120, 120, 0, 0, 120, 120);
   star1.draw();
 }
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
@@ -651,7 +648,7 @@ function checkClick3(evento, i) {
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
 }
-//Vidas 1 
+//Vidas 1
 class Life1 {
   constructor(x, y, w, h) {
     this.x = x;
@@ -734,23 +731,21 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-   ninja = new Ninja(200, 325, 500 / 10, 80, 0, 0, 500 / 10, 80),
-   cloud1 = new Cloud(20, 20, 300, 200);
-   cloud2 = new Cloud2(1400, 20, 250, 200);
+  ninja = new Ninja(200, 325, 500 / 10, 80, 0, 0, 500 / 10, 80),
+  cloud1 = new Cloud(20, 20, 300, 200),
+  cloud2 = new Cloud2(1400, 20, 250, 200),
 //SONIDOS
 var sound1 = new Audio("./assets/Sounds/explosion.wav"),
- soundJump = new Audio("./assets/Sounds/bubble.WAV"),
-soundMetal = new Audio("./assets/Sounds/metal.wav"),
-soundCoin2Player = new Audio("./assets/Sounds/coin2player.wav"),
-soundFire = new Audio ("./assets/Sounds/fire.WAV"),
-soundLife = new Audio ("./assets/Sounds/vida.wav"),
-soundCoin1Player = new Audio ("./assets/Sounds/coinPlayer1B.wav"),
-soundAttacks = new Audio ("./assets/Sounds/ataques.wav"),
-soundNoButton = new Audio ("./assets/Sounds/noButton.wav"),
-soundGreenGem = new Audio ("./assets/Sounds/greenGem.wav"),
-soundLostLife = new Audio ("./assets/Sounds/lostLife.wav");
-
-
+  soundJump = new Audio("./assets/Sounds/bubble.WAV"),
+  soundMetal = new Audio("./assets/Sounds/metal.wav"),
+  soundCoin2Player = new Audio("./assets/Sounds/coin2player.wav"),
+  soundFire = new Audio("./assets/Sounds/fire.WAV"),
+  soundLife = new Audio("./assets/Sounds/vida.wav"),
+  soundCoin1Player = new Audio("./assets/Sounds/coinPlayer1B.wav"),
+  soundAttacks = new Audio("./assets/Sounds/ataques.wav"),
+  soundNoButton = new Audio("./assets/Sounds/noButton.wav"),
+  soundGreenGem = new Audio("./assets/Sounds/greenGem.wav"),
+  soundLostLife = new Audio("./assets/Sounds/lostLife.wav");
 
 //MOTOR
 function update() {
@@ -760,7 +755,7 @@ function update() {
   //ninja1 Personaje Principal
   ninja.draw();
   if (ninja.y < canvas.height - 160) ninja.gravity();
-  //nube
+  //nubes
   cloud1.draw();
   if (cloud1.x > 1400) cloud2.draw();
   //coin1,2,3 sprite
@@ -793,10 +788,9 @@ function update() {
   //attack3B
   attack3Attacking();
   gameOver();
-
- generateAttackNinja();
- checkCollisionAttackNinja();
- 
+  //Ninja 1 ataque (Jugador 1)
+  generateAttackNinja();
+  checkCollisionAttackNinja();
 }
 //ON-MOTOR
 function start() {
@@ -804,36 +798,14 @@ function start() {
   countdown1();
   countdown2();
 }
-//cuenta regresiva de 5 sec antes de empezar el juego
-// var last5 = 0;
-// function sec5(){
-// var cronometro = setInterval(() =>{
-//   if (last5 >= 0){
-//     last5++;
-//   }
-//   if (last5 === 5){
-//     clearInterval(cronometro);
-//     start();
-//   }
-// },1000);
-// }
-
-// sec5();
- //inicio = setInterval(update, 1000 / 60);
 
 // Teclas de movimiento
 window.addEventListener("keydown", e => {
-  if (e.keyCode === 39) ninja.moveRight();
+  if (e.keyCode === 77) ninja.moveRight();
 
-  if (e.keyCode === 37) ninja.moveLeft();
+  if (e.keyCode === 67) ninja.moveLeft();
 
-  if (e.keyCode === 38) ninja.moveJump();
-
-  // if(gameOver && e.keyCode === 32) {
-  //   location.reload();
-  //}
-
-  // if (e.keyCode === 40) ninja.moveDown();
+  if (e.keyCode === 32) ninja.moveJump();
 });
 //BOTONES DE ATAQUE
 
@@ -848,7 +820,6 @@ function menosUno() {
   countAttack1.innerHTML = conteo1;
 }
 buttonAttack1.addEventListener("click", e => {
-
   if (conteo1B > 0 && disableButtons === false) {
     generateAttack1();
     menosUno();
@@ -856,7 +827,6 @@ buttonAttack1.addEventListener("click", e => {
     soundAttacks.play();
   }
   if (disableButtons) soundNoButton.play();
-  
 });
 //BOTON 2
 var countAttack2 = document.getElementById("buttonAttack2"),
@@ -898,31 +868,6 @@ buttonAttack3.addEventListener("click", e => {
   if (disableButtons) soundNoButton.play();
 });
 
-//BOTON 3B
-// var buttonAttack3B = document.getElementById("button3B");
-
-// buttonAttack3B.addEventListener("click", e => {
-
-//  attack3Attacking();
-
-// });
-
-//BOTON 4
-var countAttack4 = document.getElementById("buttonAttack4"),
-  buttonAttack4 = document.getElementById("button4"),
-  conteo4 = 10,
-  conteo4B = 10;
-
-function menosUno4() {
-  if (conteo4 > 0) conteo4--;
-  countAttack4.innerHTML = conteo4;
-}
-// buttonAttack4.addEventListener("click", e => {
-
-//   menosUno4();
-//   conteo4B--;
-// });
-
 canvas.addEventListener("click", e => {
   checkClick1(e);
   checkClick2(e);
@@ -935,7 +880,7 @@ var seg1 = 75,
   timer1 = document.getElementById("timer1"),
   timer2 = document.getElementById("timer2"),
   auxTimer = "";
-//Cuenta regresiva 1
+//Cuenta regresiva 1 Jugador 1
 function countdown1() {
   cronometro1 = setInterval(() => {
     if (seg1 <= 9) auxTimer = "0" + seg1;
@@ -947,7 +892,7 @@ function countdown1() {
   }, 1000);
 }
 //countdown1();
-//Cuenta regresiva 2
+//Cuenta regresiva 2 Jugador 2
 function countdown2() {
   cronometro2 = setInterval(() => {
     if (seg2 <= 9) auxTimer = "0" + seg2;
@@ -958,34 +903,51 @@ function countdown2() {
     if (auxTimer == 0 || ninja.life === 0) clearInterval(cronometro2);
   }, 1000);
 }
-//countdown2();
 
 function gameOver() {
   if (ninja.life === 0) {
-    //clearInterval(inicio);
-      player2Wins();
-  } else if (seg1 === 0){
-    if (ninja.coins > coinsPlayer2) {
-      //clearInterval(inicio);
-      player1Wins();
-    } else if (ninja.coins === coinsPlayer2) {
-      //clearInterval(inicio);
-      draw();
-    } else {
-      //clearInterval(inicio);
-      player2Wins();
-    }
+    player2Wins();
+  } else if (seg1 === 0) {
+    if (ninja.coins > coinsPlayer2) player1Wins();
+    else if (ninja.coins === coinsPlayer2) draw();
+    else player2Wins();
   }
 }
 
-function player1Wins(){
-  document.location.assign('player1wins.html');
+function player1Wins() {
+  document.location.assign("player1wins.html");
 }
-function player2Wins(){
-  document.location.assign('player2wins.html');
+function player2Wins() {
+  document.location.assign("player2wins.html");
 }
-function draw(){
-  document.location.assign('draw.html');
+function draw() {
+  document.location.assign("draw.html");
 }
 
 start();
+
+//Jquery
+$(document).ready(function() {
+  $(".lifesImg")
+    .hide(500)
+    .show(800);
+  $("#moneda1")
+    .hide(500)
+    .show(800);
+  $("#cronometroImg1")
+    .hide(500)
+    .show(800);
+
+  $("#moneda2")
+    .hide(500)
+    .show(800);
+  $("#cronometroImg2")
+    .hide(500)
+    .show(800);
+});
+
+(function() {
+  $("#moneda1")
+    .hide(500)
+    .show(800);
+});
