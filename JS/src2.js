@@ -143,6 +143,7 @@ class Ninja {
 
     if (this.y < 500 && this.y > 30 && this.isJumping) {
       this.y -= 200;
+      soundJump.play();
       this.isJumping = false;
       this.img.src = "./assets/img/runSB.png"
     }
@@ -195,6 +196,7 @@ function checkCollisionAttackNinja() {
     if (ninja.crashWith(array)) {
       arrayNinjaAttack.splice(i, 1);
       blockPlayer2();
+      soundGreenGem.play();
     } 
   });
 }
@@ -274,7 +276,7 @@ function checkCollision1() {
       generateStar();
       sound1.play();
     }
-    if (ninja.life >= 0) vidasId.innerHTML = ninja.life;
+    if (ninja.life >= 0) vidasId.innerHTML = ninja.life; soundLife.play();
   });
 }
 // Ataque 2 Shuriken(Ninja Star) Jugador 2
@@ -324,7 +326,7 @@ function checkCollision2() {
     if (ninja.crashWith(array)) {
       arrayattack2.splice(i, 1);
       ninja.life--;
-      generateStar();
+      soundMetal.play();
     }
     if (ninja.life >= 0) vidasId.innerHTML = ninja.life;
   });
@@ -346,6 +348,7 @@ class Attack3 {
   }
   draw() {
     context.drawImage(this.img, this.x, this.y, this.w, this.h);
+    
     if (this.y === 455) this.x += 5;
     if (this.x > 1400) this.y -= 5;
   }
@@ -355,7 +358,7 @@ class Attack3 {
   }
 }
 
-//Funciones Ataque 2 Generacion, Dibujo y Colision Jugador 2
+//Funciones Ataque 3 Generacion, Dibujo y Colision Jugador 2
 function generateAttack3() {
   arrayattack3.push(new Attack3(1, 455, 80, 70));
 }
@@ -369,7 +372,7 @@ function checkCollision3() {
     if (ninja.crashWith(array)) {
       arrayattack3.splice(i, 1);
       ninja.life--;
-      generateStar();
+      soundFire.play();
     }
     if (ninja.life >= 0) vidasId.innerHTML = ninja.life;
   });
@@ -477,6 +480,7 @@ function checkCollisionCoins1() {
     if (ninja.crashWith(array)) {
       arrayCoins1.splice(i, 1);
       ninja.coins++;
+      soundCoin1Player.play();
     }
     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
   });
@@ -490,6 +494,7 @@ function checkClick1(evento, i) {
     if (array.clickable(evento)) {
       arrayCoins1.splice(i, 1);
       coinsPlayer2++;
+      soundCoin2Player.play();
     }
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
@@ -554,6 +559,7 @@ function checkCollisionCoins2() {
     if (ninja.crashWith(array)) {
       arrayCoins2.splice(i, 1);
       ninja.coins++;
+      soundCoin1Player.play();
     }
     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
   });
@@ -564,7 +570,7 @@ function checkClick2(evento, i) {
     if (array.clickable(evento)) {
       arrayCoins2.splice(i, 1);
       coinsPlayer2++;
-      console.log(coinsPlayer2);
+      soundCoin2Player.play();
     }
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
@@ -629,6 +635,7 @@ function checkCollisionCoins3() {
     if (ninja.crashWith(array)) {
       arrayCoins3.splice(i, 1);
       ninja.coins++;
+      soundCoin1Player.play();
     }
     if (ninja.coins >= 0) coin.innerHTML = ninja.coins;
   });
@@ -639,7 +646,7 @@ function checkClick3(evento, i) {
     if (array.clickable(evento)) {
       arrayCoins3.splice(i, 1);
       coinsPlayer2++;
-      console.log(arrayCoins3);
+      soundCoin2Player.play();
     }
     if (coinsPlayer2 >= 0) player2Coins.innerHTML = coinsPlayer2;
   });
@@ -679,6 +686,7 @@ function checkCollisionLifes1() {
     if (ninja.crashWith(array)) {
       arrayLifes1.splice(i, 1);
       ninja.life++;
+      soundLife.play();
     }
     if (ninja.life >= 0) vidas.innerHTML = ninja.life;
   });
@@ -718,6 +726,7 @@ function checkCollisionLifes2() {
     if (ninja.crashWith(array)) {
       arrayLifes2.splice(i, 1);
       ninja.life++;
+      soundLife.play();
     }
     if (ninja.life >= 0) vidas.innerHTML = ninja.life;
   });
@@ -729,7 +738,19 @@ var board = new Board(),
    cloud1 = new Cloud(20, 20, 300, 200);
    cloud2 = new Cloud2(1400, 20, 250, 200);
 //SONIDOS
-var sound1 = new Audio("./assets/Sounds/glob_explosion.wav");
+var sound1 = new Audio("./assets/Sounds/explosion.wav"),
+ soundJump = new Audio("./assets/Sounds/bubble.WAV"),
+soundMetal = new Audio("./assets/Sounds/metal.wav"),
+soundCoin2Player = new Audio("./assets/Sounds/coin2player.wav"),
+soundFire = new Audio ("./assets/Sounds/fire.WAV"),
+soundLife = new Audio ("./assets/Sounds/vida.wav"),
+soundCoin1Player = new Audio ("./assets/Sounds/coinPlayer1B.wav"),
+soundAttacks = new Audio ("./assets/Sounds/ataques.wav"),
+soundNoButton = new Audio ("./assets/Sounds/noButton.wav"),
+soundGreenGem = new Audio ("./assets/Sounds/greenGem.wav"),
+soundLostLife = new Audio ("./assets/Sounds/lostLife.wav");
+
+
 
 //MOTOR
 function update() {
@@ -830,9 +851,12 @@ buttonAttack1.addEventListener("click", e => {
 
   if (conteo1B > 0 && disableButtons === false) {
     generateAttack1();
+    menosUno();
     conteo1B--;
+    soundAttacks.play();
   }
-  menosUno();
+  if (disableButtons) soundNoButton.play();
+  
 });
 //BOTON 2
 var countAttack2 = document.getElementById("buttonAttack2"),
@@ -849,7 +873,9 @@ buttonAttack2.addEventListener("click", e => {
     generateAttack2();
     menosUno2();
     conteo2B--;
+    soundAttacks.play();
   }
+  if (disableButtons) soundNoButton.play();
 });
 //BOTON 3
 var countAttack3 = document.getElementById("buttonAttack3"),
@@ -867,7 +893,9 @@ buttonAttack3.addEventListener("click", e => {
     generateAttack3();
     menosUno3();
     conteo3B--;
+    soundAttacks.play();
   }
+  if (disableButtons) soundNoButton.play();
 });
 
 //BOTON 3B
