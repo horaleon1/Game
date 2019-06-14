@@ -1,4 +1,6 @@
 // Just WoodVIbes!!!!
+
+//Musica de fondo
 const tocarMusica = () =>{
   let music = document.getElementById("music");
   music.play()
@@ -126,7 +128,7 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
-    this.x +=0.8;
+    //this.x +=0.8;
   }
 
   moveRight() {
@@ -170,7 +172,7 @@ class AttackNinja {
     this.h = h;
 
     this.img = new Image();
-    this.img.src = "./assets/img/Gem-2.png";
+    this.img.src = "./assets/img/hemGreenIcon.png";
     this.img.onload = this.draw();
   }
   draw() {
@@ -182,7 +184,7 @@ function generateAttackNinja() {
   arrayNinjaAttack.forEach(array => array.draw());
 
   var x = Math.random() * (+800 - +500) + +500,
-    y = Math.random() * (+200 - +150) + +150;
+    y = Math.random() * (+150 - +120) + +120;
 
   if (frames % 900 === 0) {
     if (arrayNinjaAttack.length === 0)
@@ -190,7 +192,7 @@ function generateAttackNinja() {
   }
 }
 
-//colision Attack Ninja
+//Colision Attack Ninja
 function checkCollisionAttackNinja() {
   arrayNinjaAttack.forEach((array, i) => {
     if (ninja.crashWith(array)) {
@@ -382,45 +384,7 @@ function checkCollision3() {
 function attack3Attacking() {
   arrayattack3.forEach(array => array.moving());
 }
-// Ataque 4 Jugador 2
 
-//Stars show after collision
-//change image
-class Star {
-  constructor(x, y, w, h, mx, my, mw, mh) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-
-    this.mx = mx;
-    this.my = my;
-    this.mw = mw;
-    this.mh = mh;
-
-    this.img = new Image();
-    this.img.src = "./assets/img/star-2.png";
-    this.img.onload = this.draw();
-  }
-  draw() {
-    context.drawImage(
-      this.img,
-      this.mx,
-      this.my,
-      this.mw,
-      this.mh,
-      this.x,
-      this.y,
-      this.w,
-      this.h
-    );
-  }
-}
-// funcion genera estrellas
-function generateStar() {
-  var star1 = new Star(ninja.x, ninja.y, 120, 120, 0, 0, 120, 120);
-  star1.draw();
-}
 //Moneda 1 (Monedas aleatorias lado izquierdo de la pantalla)
 class Coin1 {
   constructor(x, y, w, h, mx, my, mw, mh) {
@@ -661,7 +625,7 @@ class Life1 {
     this.h = h;
 
     this.img = new Image();
-    this.img.src = "./assets/img/Gem-1.png";
+    this.img.src = "./assets/img/hemRedIcon.png";
     this.img.onload = this.draw();
   }
   draw() {
@@ -673,9 +637,9 @@ function generateLifes1() {
   arrayLifes1.forEach(array => array.draw());
 
   var x = Math.random() * (+490 - +260) + +260,
-    y = Math.random() * (+300 - +150) + +150;
+    y = Math.random() * (+250 - +150) + +150;
 
-  if (frames % 300 === 0) {
+  if (frames % 600 === 0) {
     if (arrayLifes1.length < 1) arrayLifes1.push(new Life1(x, y, 40, 40));
   }
 }
@@ -701,7 +665,7 @@ class Life2 {
     this.h = h;
 
     this.img = new Image();
-    this.img.src = "./assets/img/Gem-1.png";
+    this.img.src = "./assets/img/hemRedIcon.png";
     this.img.onload = this.draw();
   }
   draw() {
@@ -713,9 +677,9 @@ function generateLifes2() {
   arrayLifes2.forEach(array => array.draw());
 
   var x = Math.random() * (+1160 - +910) + +910,
-    y = Math.random() * (+300 - +150) + +150;
+    y = Math.random() * (+250 - +150) + +150;
 
-  if (frames % 300 === 0) {
+  if (frames % 700 === 0) {
     if (arrayLifes2.length < 1) arrayLifes2.push(new Life2(x, y, 40, 40));
   }
 }
@@ -835,8 +799,8 @@ buttonAttack1.addEventListener("click", e => {
 //BOTON 2
 var countAttack2 = document.getElementById("buttonAttack2"),
   buttonAttack2 = document.getElementById("button2"),
-  conteo2 = 2,
-  conteo2B = 2;
+  conteo2 = 5,
+  conteo2B = 5;
 
 function menosUno2() {
   if (conteo2 > 0 && disableButtons === false) conteo2--;
@@ -854,8 +818,8 @@ buttonAttack2.addEventListener("click", e => {
 //BOTON 3
 var countAttack3 = document.getElementById("buttonAttack3"),
   buttonAttack3 = document.getElementById("button3"),
-  conteo3 = 3,
-  conteo3B = 3;
+  conteo3 = 5,
+  conteo3B = 5;
 
 function menosUno3() {
   if (conteo3 > 0 && disableButtons === false) conteo3--;
