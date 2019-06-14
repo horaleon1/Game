@@ -1,2 +1,5 @@
-var music = document.getElementById("music");
-music.play();
+
+const tocarMusica = () =>{
+   let music = document.getElementById("music");
+   music.play()
+}

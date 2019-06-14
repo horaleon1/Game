@@ -1,3 +1,7 @@
+const tocarMusica = () =>{
+  let music = document.getElementById("music");
+  music.play()
+
 var time = 0;
 function countdownCredits(){
 var cronometro = setInterval(()=>{
@@ -11,3 +15,7 @@ var cronometro = setInterval(()=>{
  },1000);
 }
 countdownCredits();
+
+
+
+}

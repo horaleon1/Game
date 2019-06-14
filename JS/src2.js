@@ -1,5 +1,8 @@
 // Just WoodVIbes!!!!
-
+const tocarMusica = () =>{
+  let music = document.getElementById("music");
+  music.play()
+}
 //Variables
 var canvas = document.getElementById("canvas"),
   context = canvas.getContext("2d"),
@@ -21,7 +24,7 @@ var canvas = document.getElementById("canvas"),
   disableButtons = false;
 
 //canvas.width = window.innerWidth;
-canvas.width = 1480;
+canvas.width = 1435;
 canvas.height = 500;
 
 //Clases
@@ -123,6 +126,7 @@ class Ninja {
 
   gravity() {
     this.y += gravedad;
+    this.x +=0.8;
   }
 
   moveRight() {
@@ -731,11 +735,11 @@ function checkCollisionLifes2() {
 
 // OBJETOS
 var board = new Board(),
-  ninja = new Ninja(200, 325, 500 / 10, 80, 0, 0, 500 / 10, 80),
+  ninja = new Ninja(200, 305, 500 / 10, 80, 0, 0, 500 / 10, 80),
   cloud1 = new Cloud(20, 20, 300, 200),
   cloud2 = new Cloud2(1400, 20, 250, 200),
 //SONIDOS
-var sound1 = new Audio("./assets/Sounds/explosion.wav"),
+  sound1 = new Audio("./assets/Sounds/explosion.wav"), 
   soundJump = new Audio("./assets/Sounds/bubble.WAV"),
   soundMetal = new Audio("./assets/Sounds/metal.wav"),
   soundCoin2Player = new Audio("./assets/Sounds/coin2player.wav"),
@@ -754,7 +758,7 @@ function update() {
   board.draw();
   //ninja1 Personaje Principal
   ninja.draw();
-  if (ninja.y < canvas.height - 160) ninja.gravity();
+  if (ninja.y < canvas.height - 180) ninja.gravity();
   //nubes
   cloud1.draw();
   if (cloud1.x > 1400) cloud2.draw();

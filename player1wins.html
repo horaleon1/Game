@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Jugador 1 Gana! Felicidades! </title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-  <link rel="stylesheet" href="./css/player1wins.css">
-</head>
-<body>
-  <div class = "confetti">
-    <h1 class="animated infinite tada slow"> Jugador 1 Gana!</h1>
-    <div class = "circulo">
-        <a id = "unico"  href="src2.html" > Jugar Otra Vez</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Jugador 1 Gana! Felicidades!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link rel="stylesheet" href="./css/player1wins.css" />
+  
+  </head>
+  <body>
+    <div class="confetti">
+      <h1 class="animated infinite tada slow">Jugador 1 Gana!</h1>
+      <div class="circulo">
+        <a id="unico" href="src2.html"> Jugar Otra Vez</a>
+      </div>
     </div>
-  </div>
 
-  <div id = "imagen1"></div>
+    <div id="imagen1"></div>
 
-  <div class = "circulo2">
-    <a id = "unico2"  href="index.html" > Menu Principal</a>
-</div>
+    <div class="circulo2">
+      <a id="unico2" href="index.html"> Menu Principal</a>
+    </div>
 
-<audio autoplay id = "music">
-  <source src="./assets/Sounds/goal.wav" type="audio/wav">
-</audio>
-
-
-
-
-</body>
-
-<script src="./JS/player1wins.js"></script>
+    <audio id="music" oncanplay="tocarMusica()">
+      <source src="./assets/Sounds/goal.wav" type="audio/wav" />
+    </audio>
+  </body>
+  <script src="./JS/player1wins.js"></script>
 </html>

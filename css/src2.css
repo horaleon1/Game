@@ -1,310 +1,357 @@
 /* Just WoodVines */
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 
-body{
-font-family: 'Indie FLower', cursive;
-margin: 0;
-padding: 0;
+body {
+  font-family: "Indie FLower", cursive;
+  margin: 0;
+  padding: 0;
 }
-#textPlayer1{
+#textPlayer1 {
   position: absolute;
   font-size: 42px;
   left: 10px;
-  color: #E54A09;
+  color: #e54a09;
   top: 8px;
 }
-#textPlayer1B{
+#textPlayer1B {
   position: absolute;
   left: 165px;
   font-size: 42px;
   top: 8px;
-  color: #E54A09;
+  color: #e54a09;
 }
 
-#container{
-width: 1490px;
-margin: 0;
-padding: 0;
-}
-.second{
-  margin: -10px;
-  border-top: 2px solid black;
-  background: url("../assets/img/fondo2E.jpg")no-repeat;
-  height: 250px;
-  position: relative;
-  width: 1490px;
-}
-#containerSecond{
-  margin:0;
+#container {
+  width: 1445px;
+  margin: 0;
   padding: 0;
 }
-#containerPlayer1{
+.second {
+  margin: -10px;
+  border-top: 2px solid black;
+  background: url("../assets/img/fondo2E.jpg") no-repeat;
+  height: 285px;
+  position: relative;
+  width: 1445px;
+}
+#containerSecond {
+  margin: 0;
+  padding: 0;
+}
+#containerPlayer1 {
   font-size: 40px;
-  margin: 0 auto; 
+  margin: 0 auto;
   display: inline;
   float: left;
 }
-#player1{
+#player1 {
   list-style-type: none;
   margin: 5px;
   margin-right: 70px;
   position: absolute;
 }
-#puntos2{
+#puntos2 {
   position: absolute;
-  left:15.5%;
+  left: 15.5%;
 }
-#puntos3{
+#puntos3 {
   position: absolute;
-  left:35.5%;
+  left: 35.5%;
   top: -5px;
 }
-div ul li{
+div ul li {
   display: inline;
   position: absolute;
   top: 10px;
 }
 
-#vidaCara{
+#vidaCara {
   height: 40px;
   width: 40px;
 }
-.ninjaJugador1{
+.ninjaJugador1 {
   height: 100px;
   width: 70px;
 }
-#timer1{
+#timer1 {
   color: red;
   font-size: 50px;
 }
-.moneda1{
+.moneda1 {
   height: 40px;
   width: 40px;
 }
-#vidas{
+#vidas {
   color: red;
 }
 
-#button1{
+#button1 {
   position: absolute;
   left: 203px;
-  top:140px;
+  top: 175px;
   height: 50px;
   width: 70px;
   border-radius: 5px;
-  border-color:  #E54A09;
-  font-family: 'Indie FLower', cursive;
-  font-size: 14.5px;
+  border-color: #e54a09;
+  font-family: "Indie FLower", cursive;
+  font-size: 14px;
+  opacity: 1;
 }
 /* Cantidad de ataques */
-#buttonAttack1{
+#buttonAttack1 {
   position: relative;
   left: 200%;
   font-size: 30px;
-  top: 55px;
-  left:330px;
+  top: 65px;
+  left: 330px;
   font-size: 40px;
   color: red;
 }
-#secondImg1{
+#secondImg1 {
   height: 40px;
   width: 70px;
   position: absolute;
-  left:315px;
-  top: 145px;
+  left: 315px;
+  top: 180px;
+  animation: cohete 6s ease-in-out infinite;
 }
-.secondTexto1{
+@keyframes cohete {
+  0% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-8px);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+.secondTexto1 {
   font-size: 15px;
   position: absolute;
-  left: 210px;
-  top:50px;
+  left: 205px;
+  top: 65px;
 }
-#button2{
+#button2 {
   position: absolute;
   left: 410px;
-  top:140px;
+  top: 175px;
   height: 50px;
   width: 70px;
   border-radius: 5px;
-  border-color:  #E54A09;
-  font-family: 'Indie FLower', cursive;
-  font-size: 14.5px;
+  border-color: #e54a09;
+  font-family: "Indie FLower", cursive;
+  font-size: 14px;
 }
 /* Cantidad de ataques */
-#buttonAttack2{
+#buttonAttack2 {
   position: relative;
   left: 200%;
   font-size: 30px;
-  top:-13px;
-  left:535px;
+  top: 0px;
+  left: 535px;
   font-size: 45px;
   color: red;
 }
-#secondImg2{
+#secondImg2 {
   height: 50px;
   width: 50px;
   position: absolute;
-  left:520px;
-  top: 140px;
+  left: 520px;
+  top: 175px;
+  animation: estrella 28s linear infinite;
+  transform: rotate(0deg);
 }
-.secondTexto2{
+@keyframes estrella {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(720deg);
+  }
+}
+.secondTexto2 {
   font-size: 15px;
   position: absolute;
   left: 415px;
-  top:50px;
+  top: 65px;
 }
-#button3{
+#button3 {
   position: absolute;
   left: 615px;
-  top:140px;
+  top: 175px;
   height: 50px;
   width: 70px;
   border-radius: 5px;
-  border-color:  #E54A09;
-  font-family: 'Indie FLower', cursive;
-  font-size: 14.5px;
+  border-color: #e54a09;
+  font-family: "Indie FLower", cursive;
+  font-size: 14px;
 }
 /* Cantidad de ataques */
-#buttonAttack3{
+#buttonAttack3 {
   position: relative;
   left: 200%;
   font-size: 30px;
-  top: -80px;
-  left:735px;
+  top: -70px;
+  left: 735px;
   font-size: 45px;
   color: red;
 }
-#secondImg3{
+#secondImg3 {
   height: 50px;
   width: 50px;
   position: absolute;
-  left:720px;
-  top: 140px;
+  left: 720px;
+  top: 173px;
+  animation: fuego 6s ease-in-out infinite;
 }
-.secondTexto3{
+@keyframes fuego {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translatey(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.secondTexto3 {
   font-size: 15px;
   position: absolute;
   left: 615px;
-  top:50px;
+  top: 65px;
 }
-#conteoCongelado{
+#conteoCongelado {
   position: absolute;
   font-size: 55px;
-  top: 60px;
-  left:840px;
-  color:blue;
+  top: 63px;
+  left: 840px;
+  color: blue;
 }
-.secondTexto5{
-position: absolute;
-font-size:18px;
-top:115px;
-left:814px;
+.secondTexto5 {
+  position: absolute;
+  font-size: 18px;
+  top: 150px;
+  left: 814px;
 }
-#secondImg4{
+#secondImg4 {
   height: 90px;
   width: 100px;
   position: absolute;
-  left:803px;
-  top:-5px;
+  left: 803px;
+  top: -8px;
 }
-.whiteNinja{
+.whiteNinja {
   width: 150px;
   height: 130px;
   position: absolute;
-  top: 60px;
-  left: 20px;
-  transform: translateX(0px);
-  animation: ninja 9s ease-in-out infinite;
+  top: 90px;
+  left: 15px;
+  transform: translateY(0px);
+  animation: ninja 12s ease-in-out infinite;
 }
-@keyframes ninja{
-  0%{
-    transform: translateX(0px);
+@keyframes ninja {
+  0% {
+    transform: translateY(0px);
   }
-  50%{
-    transform: translateX(20px);
+  50% {
+    transform: translateY(20px);
   }
-  100%{
-    transform: translateX(0px);
+  100% {
+    transform: translateY(0px);
   }
 }
-#cronometroImg2{
+#cronometroImg2 {
   height: 35px;
   width: 35px;
   position: absolute;
-  left:-105px;
+  left: -105px;
   top: 15px;
 }
-#timer2{
+#timer2 {
   font-size: 45px;
   position: absolute;
-  left:-8px;
-  color: #E54A09;
+  left: -8px;
+  color: #e54a09;
 }
-#moneda2{
+#moneda2 {
   height: 42px;
   width: 42px;
   position: absolute;
   left: -13px;
-  top:-4px;
+  top: -4px;
 }
-#puntosCoin2{
+#puntosCoin2 {
   position: absolute;
   left: 100px;
   font-size: 45px;
   top: -15px;
-  color: #E54A09;
+  color: #e54a09;
 }
-.jugador2Text{
+.jugador2Text {
   font-size: 35px;
   color: green;
   position: absolute;
   left: 23px;
 }
-.firstLifes{
-position: absolute;
+.firstLifes {
+  position: absolute;
 }
-#cronometroImg1{
- height: 38px;
- width: 38px;
- position: absolute;
- left: 400px;
+#cronometroImg1 {
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  left: 400px;
 }
-#timer1{
-position: absolute;
-left: 439px;
-color: #E54A09;
-font-size:55px;
+#timer1 {
+  position: absolute;
+  left: 439px;
+  color: #e54a09;
+  font-size: 55px;
 }
-.firstVidas{
+.firstVidas {
   position: absolute;
   top: 52px;
   left: 200px;
 }
-#vidas{
+#vidas {
   position: absolute;
   left: 80px;
   top: -45px;
   font-size: 55px;
   left: 489px;
-  color: #E54A09;
+  color: #e54a09;
 }
-.lifesImg{
+.lifesImg {
   height: 52px;
   width: 52px;
   position: absolute;
   left: 430px;
   top: -50px;
 }
-#moneda1{
+#moneda1 {
   height: 45px;
   width: 45px;
   position: absolute;
   left: 204px;
 }
-#puntosCoin{
+#puntosCoin {
   position: absolute;
   left: 250px;
   font-size: 55px;
   top: -5px;
-  color: #E54A09;
+  color: #e54a09;
+}
+
+#button1:hover {
+  opacity: 0.7;
+}
+#button2:hover {
+  opacity: 0.7;
+}
+#button3:hover {
+  opacity: 0.7;
 }
