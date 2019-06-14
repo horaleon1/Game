@@ -104,14 +104,14 @@ body{
   position: absolute;
   top: 0%;
   left:50%;
-  animation: 180s creditos linear infinite;
+  animation: 200s creditos linear infinite;
 }
 @keyframes creditos{
   0%{
-    top:0%;
+    top:100%;
   }
   100%{
-    top:500%;
+    top:-500%;
   }
 }
 .containerImagenes2{
@@ -123,7 +123,7 @@ body{
 }
 @keyframes imagenes{
   0%{
-    top:0%;
+    top:100%;
   }
   100%{
    top:-1000%;
@@ -131,4 +131,10 @@ body{
 }
 ul li{
   list-style: none;
+}
+.imgNombres1{
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 150px;
 }
