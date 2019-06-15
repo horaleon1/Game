@@ -262,10 +262,10 @@ animation: flotando 7s ease-in-out infinite;
   bottom: 20px;
 }
 .menuJuego{
-  width: 500px;
+  width: 700px;
   height: 350px;
   position: relative;
-  left: 25%;
+  left: 15%;
   top:5px;
   border-radius: 10px;
 }
