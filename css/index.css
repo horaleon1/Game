@@ -265,7 +265,7 @@ animation: flotando 7s ease-in-out infinite;
   width: 500px;
   height: 350px;
   position: relative;
-  left: 5%;
+  left: 25%;
   top:5px;
   border-radius: 10px;
 }
@@ -275,7 +275,19 @@ animation: flotando 7s ease-in-out infinite;
 }
 .consolaAtaques{
   width: 600px;
-  height: 250px;
+  height: 200px;
   position: relative;
-  left: 10%;
+  left: 20%;
+  border-radius: 10px;
+}
+.tabla{
+  height: 500px;
+  width: 700px;
+}
+.pantallaJuego{
+  height: 300px;
+  width: 500px;
+  position: relative;
+  left: 25%;
+  border-radius: 10px;
 }
