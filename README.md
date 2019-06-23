@@ -1,4 +1,5 @@
 # Shoot the Ninja
+    <p>Shoot the Ninja es el primer proyecto de tres que realizare durante mi bootcamp en Iron Hack Mexico </p>
 
    <h1>Instrucciones</h1>
                 <h2>Shoot the Ninja </h2>
