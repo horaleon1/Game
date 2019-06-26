@@ -71,7 +71,7 @@ class Cloud {
 //nube 2
 class Cloud2 extends Cloud{
   constructor(x, y, w, h) {
-    super(x,y,w,h)
+    super(x,y,w,h,)
 
     this.img = new Image();
     this.img.src = "./assets/img/cloud.png";
